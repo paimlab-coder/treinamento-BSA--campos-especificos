@@ -1,182 +1,823 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Sua operação está pronta para a reta final do ano?</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Ocupação & Agendamentos | Salesforce</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#06418a',
+                            darkblue: '#032856',
+                            orange: '#F8820A',
+                            lightorange: '#FFF5EB',
+                            graybg: '#f8fafc',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .tab-active { border-bottom: 3px solid #F8820A; color: #06418a; font-weight: 600; }
+        .glass-panel { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+    </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f1f5f9; font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased;">
+<body class="text-slate-800 antialiased min-h-screen flex flex-col">
 
-    <!-- CONTAINER PRINCIPAL -->
-    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f1f5f9; padding: 20px 0;">
-        <tr>
-            <td align="center">
+    <!-- Header Principal -->
+    <header class="bg-brand-blue text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-4">
+                    <div class="bg-brand-orange p-3 rounded-xl shadow-md text-white">
+                        <i class="fa-solid fa-[#cloud] fa-brands fa-salesforce text-3xl"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-brand-orange/20 text-orange-200 text-xs px-2.5 py-0.5 rounded-full font-medium uppercase tracking-wider border border-brand-orange/40">Treinamento Oficial</span>
+                            <span class="text-xs text-slate-300"><i class="fa-regular fa-clock mr-1"></i>Novembro & Dezembro 2026</span>
+                        </div>
+                        <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white leading-tight">
+                            1º Treinamento - SALES FORCE <span class="text-slate-300 font-normal text-base hidden sm:inline">(preenchimento de campos específicos)</span>
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Perfil do Responsável -->
+                <div class="hidden md:flex items-center space-x-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10">
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-lg shadow">
+                            DP
+                        </div>
+                        <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-brand-blue rounded-full"></span>
+                    </div>
+                    <div class="text-left text-xs">
+                        <p class="font-semibold text-white">Diogo Paim Gonçalves</p>
+                        <p class="text-slate-300">Instrutor & Facilitador</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <!-- Banner Informativo da Origem / Contexto -->
+        <div class="bg-gradient-to-r from-brand-blue to-blue-900 text-white rounded-2xl p-5 shadow-lg relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div class="relative z-10 max-w-3xl">
+                <div class="flex items-center gap-2 text-brand-orange font-semibold text-sm mb-1">
+                    <i class="fa-solid fa-envelope-open-text"></i> Alinhamento da Agenda por E-mail
+                </div>
+                <p class="text-sm text-slate-200 leading-relaxed">
+                    Janelas de disponibilidade definidas por <strong>Diogo Paim Gonçalves</strong> para realização do treinamento de Sales Force. Utilize esta ferramenta para alocar sua equipe nos horários livres.
+                </p>
+            </div>
+            <div class="flex gap-2 flex-wrap relative z-10 w-full md:w-auto">
+                <button onclick="openParticipantsModal()" class="w-full sm:w-auto px-4 py-2.5 bg-white text-brand-blue hover:bg-slate-100 font-semibold rounded-xl text-sm transition-all shadow flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-users text-brand-orange"></i>
+                    Ver Lista de Convocados (<span id="count-participants">12</span>)
+                </button>
+            </div>
+            <!-- Elemento Decorativo no fundo -->
+            <div class="absolute -right-10 -bottom-10 text-white/5 pointer-events-none text-9xl">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+        </div>
+
+        <!-- Cards de KPI -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Card 1: Horas Totais Janela -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex items-center justify-between hover:shadow-md transition">
+                <div>
+                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Janela de Horários</p>
+                    <h3 class="text-2xl font-bold text-slate-800 mt-1" id="kpi-total-hours">45h 00m</h3>
+                    <p class="text-xs text-slate-500 mt-1">Disponibilizadas no e-mail</p>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center text-xl">
+                    <i class="fa-regular fa-clock"></i>
+                </div>
+            </div>
+
+            <!-- Card 2: Horas Livres -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex items-center justify-between hover:shadow-md transition">
+                <div>
+                    <p class="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Slots Livres</p>
+                    <h3 class="text-2xl font-bold text-emerald-600 mt-1" id="kpi-free-slots">89 Slots</h3>
+                    <p class="text-xs text-slate-500 mt-1"><span id="kpi-free-hours">44h 30m</span> disponíveis</p>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+            </div>
+
+            <!-- Card 3: Reservado / Ocupado -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex items-center justify-between hover:shadow-md transition">
+                <div>
+                    <p class="text-xs font-semibold text-rose-600 uppercase tracking-wider">Reservado / Ocupado</p>
+                    <h3 class="text-2xl font-bold text-rose-600 mt-1" id="kpi-busy-slots">1 Slot</h3>
+                    <p class="text-xs text-slate-500 mt-1">Time Sudeste (19/11 9h)</p>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-user-lock"></i>
+                </div>
+            </div>
+
+            <!-- Card 4: Taxa de Ocupação -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex items-center justify-between hover:shadow-md transition">
+                <div>
+                    <p class="text-xs font-semibold text-brand-orange uppercase tracking-wider">Taxa de Ocupação</p>
+                    <h3 class="text-2xl font-bold text-brand-blue mt-1" id="kpi-occupancy-rate">1.1%</h3>
+                    <div class="w-full bg-slate-100 rounded-full h-2 mt-2 w-28 overflow-hidden">
+                        <div id="kpi-bar-occupancy" class="bg-brand-orange h-2 rounded-full" style="width: 1.1%"></div>
+                    </div>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-orange-50 text-brand-orange flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles de Filtro e Modos de Visualização -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Abas de Alternância -->
+            <div class="flex items-center space-x-2 bg-slate-100 p-1 rounded-xl w-full md:w-auto">
+                <button id="view-slots-btn" onclick="switchView('slots')" class="flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg transition-all bg-white text-brand-blue shadow">
+                    <i class="fa-solid fa-list-check mr-2"></i> Grade de Horários (Slots)
+                </button>
+                <button id="view-calendar-btn" onclick="switchView('calendar')" class="flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all">
+                    <i class="fa-regular fa-calendar-days mr-2"></i> Calendário Mensal
+                </button>
+            </div>
+
+            <!-- Filtros de Status -->
+            <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+                <span class="text-xs font-medium text-slate-500 mr-1 hidden lg:inline"><i class="fa-solid fa-filter mr-1"></i>Filtro:</span>
+                <button onclick="filterSlots('all')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-brand-blue text-white transition" data-filter="all">Todos</button>
+                <button onclick="filterSlots('free')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-filter="free">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block mr-1"></span> Livres
+                </button>
+                <button onclick="filterSlots('occupied')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-filter="occupied">
+                    <span class="w-2 h-2 rounded-full bg-rose-500 inline-block mr-1"></span> Reservados / Ocupados
+                </button>
                 
-                <!-- CARD VERTICAL (600px LARGURA PADRÃO EMAIL) -->
-                <table border="0" cellpadding="0" cellspacing="0" width="600" style="width: 600px; max-width: 600px; background-color: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #cbd5e1;">
+                <!-- Botão Novo Agendamento -->
+                <button onclick="openBookingModal()" class="ml-auto px-4 py-1.5 bg-brand-orange hover:bg-orange-600 text-white font-medium text-xs rounded-lg shadow transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-plus"></i> Agendar Treinamento
+                </button>
+            </div>
+        </div>
+
+        <!-- PAINEL 1: Visualização por Slots de Horário / Grade (Padrão) -->
+        <div id="slots-view-container" class="space-y-6">
+            
+            <!-- Seção Janela 1 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-brand-blue text-white px-3 py-1 rounded-lg text-xs font-bold">JANELA 1</span>
+                        <h3 class="font-bold text-slate-800 text-base">17/11 a 19/11/2026</h3>
+                        <span class="text-xs text-slate-500 bg-slate-200/60 px-2 py-0.5 rounded">(Manhã: 09h00 – 12h00)</span>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium">Slots de 30 min | 3 Dias disponíveis</span>
+                </div>
+                <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6" id="window-1-grid">
+                    <!-- Gerado Dinamicamente -->
+                </div>
+            </div>
+
+            <!-- Seção Janela 2 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-brand-blue text-white px-3 py-1 rounded-lg text-xs font-bold">JANELA 2</span>
+                        <h3 class="font-bold text-slate-800 text-base">24/11 a 26/11/2026</h3>
+                        <span class="text-xs text-slate-500 bg-slate-200/60 px-2 py-0.5 rounded">(Manhã: 09h-12h | Tarde: 14h-16h)</span>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium">Slots de 30 min | 3 Dias disponíveis</span>
+                </div>
+                <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6" id="window-2-grid">
+                    <!-- Gerado Dinamicamente -->
+                </div>
+            </div>
+
+            <!-- Seção Janela 3 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-brand-blue text-white px-3 py-1 rounded-lg text-xs font-bold">JANELA 3</span>
+                        <h3 class="font-bold text-slate-800 text-base">02/12 a 04/12/2026</h3>
+                        <span class="text-xs text-slate-500 bg-slate-200/60 px-2 py-0.5 rounded">(Manhã: 09h-12h | Tarde: 14h-16h)</span>
+                    </div>
+                    <span class="text-xs text-slate-500 font-medium">Slots de 30 min | 3 Dias disponíveis</span>
+                </div>
+                <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6" id="window-3-grid">
+                    <!-- Gerado Dinamicamente -->
+                </div>
+            </div>
+
+        </div>
+
+        <!-- PAINEL 2: Visualização de Calendário Mensal (Oculto por padrão) -->
+        <div id="calendar-view-container" class="hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Calendário Novembro 2026 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-bold text-brand-blue flex items-center gap-2">
+                            <i class="fa-regular fa-calendar"></i> Novembro 2026
+                        </h3>
+                        <span class="text-xs bg-blue-50 text-brand-blue font-semibold px-2.5 py-1 rounded-full">6 Dias de Treinamento</span>
+                    </div>
                     
-                    <!-- CABEÇALHO / HEADER COM LOGO OFICIAL COMPATÍVEL -->
-                    <tr>
-                        <td align="center" style="background-color: #002b49; padding: 35px 25px 30px 25px; text-align: center;">
-                            <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2023/05/logo-bertolini.png" alt="Bertolini Sistemas de Armazenagem" width="180" style="display: block; margin: 0 auto 20px auto; border: 0; width: 180px; height: auto;" />
-                            
-                            <table border="0" cellpadding="0" cellspacing="0" style="background-color: #005CA9; border-radius: 20px; margin: 0 auto 15px auto;">
-                                <tr>
-                                    <td style="padding: 6px 14px; color: #ffffff; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; text-align: center;">
-                                        Novo Canal de Relacionamento
-                                    </td>
-                                </tr>
-                            </table>
-                            
-                            <h1 style="color: #ffffff; font-size: 22px; line-height: 1.4; margin: 0; font-weight: 700;">Sua operação está pronta para a reta final do ano?</h1>
-                        </td>
-                    </tr>
+                    <div class="grid grid-cols-7 gap-1 text-center font-semibold text-xs text-slate-400 mb-2">
+                        <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-7 gap-2 text-sm" id="cal-nov-grid">
+                        <!-- Gerado por JS -->
+                    </div>
+                </div>
 
-                    <!-- INTRODUÇÃO -->
-                    <tr>
-                        <td style="padding: 30px 30px 15px 30px; color: #334155; font-size: 15px; line-height: 1.6;">
-                            <p style="margin: 0 0 15px 0; font-weight: bold; color: #002b49; font-size: 17px;">Olá!</p>
-                            <p style="margin: 0 0 15px 0;">A partir deste mês, a <strong>Bertolini Sistemas de Armazenagem</strong> abre um novo canal de relacionamento com você.</p>
-                            <p style="margin: 0 0 15px 0;">Uma vez por mês, vamos compartilhar conteúdos práticos sobre <strong>armazenagem, automação intralogística, produtividade operacional, aproveitamento de espaço e tendências</strong> que impactam a eficiência logística das empresas.</p>
-                            <p style="margin: 0;">A ideia é dividir experiências adquiridas em projetos de diferentes segmentos e ajudar você a tomar decisões mais assertivas sobre a estrutura que sustenta sua operação.</p>
-                        </td>
-                    </tr>
+                <!-- Calendário Dezembro 2026 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-bold text-brand-blue flex items-center gap-2">
+                            <i class="fa-regular fa-calendar"></i> Dezembro 2026
+                        </h3>
+                        <span class="text-xs bg-blue-50 text-brand-blue font-semibold px-2.5 py-1 rounded-full">3 Dias de Treinamento</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-7 gap-1 text-center font-semibold text-xs text-slate-400 mb-2">
+                        <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-7 gap-2 text-sm" id="cal-dec-grid">
+                        <!-- Gerado por JS -->
+                    </div>
+                </div>
 
-                    <!-- BLOCO DE DESTAQUE DE RETA FINAL -->
-                    <tr>
-                        <td style="padding: 10px 30px 20px 30px;">
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f8fafc; border-left: 4px solid #005CA9; border-radius: 4px;">
-                                <tr>
-                                    <td style="padding: 15px 20px; color: #002b49; font-size: 15px; line-height: 1.5;">
-                                        <h3 style="margin: 0 0 8px 0; font-size: 16px; color: #002b49; font-weight: 700;">Fim do ano: mais estoque, mais pedidos e mais pressão sobre a operação</h3>
-                                        <p style="margin: 0; color: #475569; font-size: 14px;">Black Friday, Natal, sazonalidades do mercado e aumento da produção tornam os últimos meses do ano mais intensos. Nesses períodos, a capacidade de armazenagem e velocidade operacional passam a ser fatores decisivos.</p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
+            </div>
 
-                    <!-- SESSÃO: PRODUTIVIDADE -->
-                    <tr>
-                        <td style="padding: 15px 30px; color: #334155; font-size: 14px; line-height: 1.6;">
-                            <p style="font-size: 11px; font-weight: 700; color: #005CA9; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 5px 0;">PRODUTIVIDADE</p>
-                            <h2 style="font-size: 18px; color: #002b49; margin: 0 0 15px 0; font-weight: 700;">O momento de avaliar é antes do pico</h2>
-                            <p style="margin: 0 0 10px 0;">Este é o momento ideal para verificar:</p>
-                            <ul style="margin: 0 0 15px 0; padding-left: 20px; color: #475569;">
-                                <li style="margin-bottom: 6px;">Se a capacidade atual atende ao crescimento esperado;</li>
-                                <li style="margin-bottom: 6px;">Se existem áreas subutilizadas no armazém;</li>
-                                <li style="margin-bottom: 6px;">Se os fluxos operacionais estão adequados ao aumento de demanda;</li>
-                                <li style="margin-bottom: 6px;">Se há gargalos que podem comprometer a produtividade;</li>
-                                <li style="margin-bottom: 0;">Se a operação está preparada para futuras expansões.</li>
-                            </ul>
-                            <p style="margin: 0; font-size: 13px; color: #64748b; font-style: italic;">Quanto antes essa avaliação for realizada, maior será a previsibilidade para enfrentar períodos de alta demanda.</p>
-                        </td>
-                    </tr>
+            <!-- Legenda do Calendário -->
+            <div class="bg-white p-4 rounded-xl border border-slate-200 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-600">
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-emerald-500"></span> Dia com Horários Disponíveis
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-rose-500"></span> Possui Agendamento / Parcialmente Ocupado
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-slate-200"></span> Sem Janela Prevista
+                </div>
+            </div>
+        </div>
 
-                    <!-- SESSÃO: EFICIÊNCIA OPERACIONAL E SOLUÇÕES -->
-                    <tr>
-                        <td style="padding: 15px 30px; color: #334155; font-size: 14px; line-height: 1.6;">
-                            <p style="font-size: 11px; font-weight: 700; color: #005CA9; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 5px 0;">EFICIÊNCIA OPERACIONAL</p>
-                            <h2 style="font-size: 18px; color: #002b49; margin: 0 0 10px 0; font-weight: 700;">Pequenas mudanças podem gerar grandes ganhos</h2>
-                            <p style="margin: 0 0 15px 0;">Nem sempre ampliar capacidade significa ampliar área construída. Em muitos casos, é possível aumentar a eficiência por meio da revisão do layout, adoção de sistemas adequados ou implantação gradual de tecnologias de automação.</p>
-                            
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                <tr>
-                                    <td align="center" style="background-color: #002b49; color: #ffffff; padding: 15px; border-radius: 6px; font-size: 13px; line-height: 1.6;">
-                                        <strong>Soluções Bertolini:</strong><br />
-                                        Porta-Paletes &bull; Drive-In &bull; Sistemas de Alta Densidade &bull; Bases Móveis &bull; Transelevadores &bull; Miniloads &bull; Shuttle para Pallets
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
+    </main>
 
-                    <!-- CHECKLIST 3 PERGUNTAS -->
-                    <tr>
-                        <td style="padding: 20px 30px 10px 30px;">
-                            <h3 style="font-size: 16px; color: #002b49; margin: 0 0 15px 0; font-weight: 700;">Antes do pico, vale responder:</h3>
-                            
-                            <!-- ITEM 1 -->
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 12px;">
-                                <tr>
-                                    <td width="32" align="center" valign="top" style="background-color: #e0f2fe; color: #0369a1; font-weight: bold; font-size: 14px; border-radius: 50%; height: 32px; line-height: 32px;">1</td>
-                                    <td width="12"></td>
-                                    <td style="font-size: 13px; color: #334155; line-height: 1.4;">
-                                        <strong>Sua capacidade atual suporta o aumento previsto de estoque?</strong><br />
-                                        Períodos de maior demanda exigem mais posições e melhor aproveitamento da área.
-                                    </td>
-                                </tr>
-                            </table>
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-auto py-4 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <p>1º Treinamento Salesforce &copy; 2026 - Gestão de Ocupação por Equipes</p>
+            <p class="flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span> Sistema de Reserva Ativo
+            </p>
+        </div>
+    </footer>
 
-                            <!-- ITEM 2 -->
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 12px;">
-                                <tr>
-                                    <td width="32" align="center" valign="top" style="background-color: #e0f2fe; color: #0369a1; font-weight: bold; font-size: 14px; border-radius: 50%; height: 32px; line-height: 32px;">2</td>
-                                    <td width="12"></td>
-                                    <td style="font-size: 13px; color: #334155; line-height: 1.4;">
-                                        <strong>Existem gargalos que limitam a produtividade da operação hoje?</strong><br />
-                                        Deslocamentos excessivos e processos manuais podem impactar a eficiência.
-                                    </td>
-                                </tr>
-                            </table>
+    <!-- MODAL 1: Lista de Participantes convocados no E-mail -->
+    <div id="modal-participants" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-100 flex flex-col max-h-[90vh]">
+            <div class="bg-brand-blue text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-users text-brand-orange text-xl"></i>
+                    <div>
+                        <h3 class="font-bold text-lg leading-snug">Participantes do E-mail</h3>
+                        <p class="text-xs text-slate-300">Convocados e cópias do e-mail do treinamento</p>
+                    </div>
+                </div>
+                <button onclick="closeParticipantsModal()" class="text-slate-300 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-4">
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 mb-2">
+                    <strong class="text-brand-blue">Instrutor:</strong> Diogo Paim Gonçalves (diogo.paim@empresa.com.br)
+                </div>
 
-                            <!-- ITEM 3 -->
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 15px;">
-                                <tr>
-                                    <td width="32" align="center" valign="top" style="background-color: #e0f2fe; color: #0369a1; font-weight: bold; font-size: 14px; border-radius: 50%; height: 32px; line-height: 32px;">3</td>
-                                    <td width="12"></td>
-                                    <td style="font-size: 13px; color: #334155; line-height: 1.4;">
-                                        <strong>Sua estrutura está preparada para acompanhar o crescimento?</strong><br />
-                                        Avaliar alternativas agora ajuda a reduzir riscos e criar uma base sólida.
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Destinatários Principais (Para)</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="list-para">
+                    <!-- Dinâmico -->
+                </div>
 
-                    <!-- CALL TO ACTION (CTA) COM E-MAIL DO PATRICK -->
-                    <tr>
-                        <td align="center" style="padding: 25px 30px 25px 30px;">
-                            <table border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
-                                <tr>
-                                    <td align="center" bgcolor="#2563eb" style="border-radius: 6px;">
-                                        <a href="mailto:patrick.casagrande@bertolini.com.br" target="_blank" style="font-size: 16px; font-family: Arial, sans-serif; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 6px; border: 1px solid #2563eb; display: inline-block; font-weight: bold;">
-                                            Falar com um Especialista &nearr;
-                                        </a>
-                                    </td>
-                                </tr>
-                            </table>
-                            <p style="font-size: 12px; color: #64748b; margin: 12px 0 0 0;">Ainda dá tempo de preparar sua operação para a reta final do ano.</p>
-                        </td>
-                    </tr>
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-4">Em Cópia (Cc)</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="list-cc">
+                    <!-- Dinâmico -->
+                </div>
+            </div>
 
-                    <!-- ASSINATURA -->
-                    <tr>
-                        <td style="background-color: #f8fafc; padding: 25px 30px; border-top: 1px solid #cbd5e1;">
-                            <p style="margin: 0 0 4px 0; font-size: 15px; font-weight: bold; color: #002b49;">Diogo Paim Gonçalves</p>
-                            <p style="margin: 0 0 12px 0; font-size: 13px; color: #005CA9; font-weight: 600;">Desenvolvimento de Negócios | Bertolini Sistemas de Armazenagem</p>
-                            
-                            <p style="margin: 0; font-size: 12px; color: #64748b; line-height: 1.5;">
-                                <strong>BERTOLINI SISTEMAS DE ARMAZENAGEM</strong><br />
-                                Soluções em Armazenagem e Automação Intralogística<br />
-                                Bento Gonçalves - RS | Atendimento em todo o Brasil
-                            </p>
-                        </td>
-                    </tr>
+            <div class="bg-slate-100 px-6 py-3 border-t border-slate-200 text-right">
+                <button onclick="closeParticipantsModal()" class="px-5 py-2 bg-slate-700 text-white font-medium text-xs rounded-xl hover:bg-slate-800 transition">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
 
-                    <!-- RODAPÉ -->
-                    <tr>
-                        <td align="center" style="background-color: #002b49; padding: 15px; color: #94a3b8; font-size: 11px;">
-                            &quot;Eficiência logística para sustentar o próximo ciclo de crescimento.&quot;
-                        </td>
-                    </tr>
+    <!-- MODAL 2: Agendar Slot / Detalhes de Agendamento -->
+    <div id="modal-booking" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-100">
+            <div class="bg-brand-blue text-white px-6 py-4 flex items-center justify-between">
+                <h3 class="font-bold text-base flex items-center gap-2">
+                    <i class="fa-regular fa-calendar-plus text-brand-orange"></i>
+                    <span id="booking-modal-title">Agendar Horário</span>
+                </h3>
+                <button onclick="closeBookingModal()" class="text-slate-300 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
 
-                </table>
-                <!-- FIM CARD VERTICAL -->
+            <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="p-6 space-y-4">
+                <input type="hidden" id="booking-slot-id">
 
-            </td>
-        </tr>
-    </table>
+                <div class="bg-blue-50 border border-blue-100 p-3 rounded-xl text-xs text-brand-blue flex items-center gap-3">
+                    <i class="fa-solid fa-clock text-lg text-brand-orange"></i>
+                    <div>
+                        <p class="font-bold text-slate-800" id="modal-slot-datetime">19/11/2026 às 09:00 - 09:30</p>
+                        <p class="text-slate-500">Duração: 30 minutos</p>
+                    </div>
+                </div>
 
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Nome da Equipe / Solicitante *</label>
+                    <input type="text" id="booking-team-name" required placeholder="Ex: Time Sudeste, Time Comercial, Região Sul" class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Responsável pelo Agendamento *</label>
+                    <input type="text" id="booking-owner" required placeholder="Ex: Rafael Carvalho / Poliana Machado" class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Observações ou Pauta Específica</label>
+                    <textarea id="booking-notes" rows="2" placeholder="Dúvidas específicas sobre preenchimento de campos..." class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue"></textarea>
+                </div>
+
+                <div id="occupied-actions" class="hidden space-y-2 pt-2 border-t border-slate-100">
+                    <p class="text-xs text-rose-600 font-semibold flex items-center gap-1">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Este horário já consta como OCUPADO.
+                    </p>
+                    <button type="button" onclick="releaseSlot()" class="w-full py-2 bg-rose-100 hover:bg-rose-200 text-rose-700 font-semibold text-xs rounded-xl transition">
+                        <i class="fa-solid fa-trash-can mr-1"></i> Liberar Horário (Desmarcar)
+                    </button>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeBookingModal()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-xs rounded-xl transition">
+                        Cancelar
+                    </button>
+                    <button type="submit" id="save-booking-btn" class="px-5 py-2.5 bg-brand-orange hover:bg-orange-600 text-white font-semibold text-xs rounded-xl shadow transition">
+                        Confirmar Reserva
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script de Lógica e Interatividade -->
+    <script>
+        // Dados dos Participantes do E-mail
+        const participantsPara = [
+            "Rafael Henrique Andrade de Carvalho",
+            "Patrick Casagrande",
+            "Bruna Fernanda Do Prado Ribeiro",
+            "Ronaldo Antunes",
+            "Israel Schimitz dos Santos"
+        ];
+
+        const participantsCc = [
+            "Cristiano Borges Fornari",
+            "Poliana Da Silva Machado",
+            "Lucas Merlo Ben",
+            "Jakson Pires",
+            "Renata Pozza",
+            "Paula Pellegrini",
+            "Dener Paludo"
+        ];
+
+        // Definindo a Estrutura de Slots de Horários das 3 Janelas
+        // Data Ocupada pré-definida: Qui. 19/11/2026 09:00 - 09:30 (Time Sudeste - Diogo Paim Gonçalves)
+        let scheduleData = [
+            // --- JANELA 1: 17 a 19/11 (09h00 - 12h00) ---
+            { id: "17-11-0900", dateStr: "2026-11-17", dateDisplay: "Terça, 17/11/2026", timeDisplay: "09:00 - 09:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "17-11-0930", dateStr: "2026-11-17", dateDisplay: "Terça, 17/11/2026", timeDisplay: "09:30 - 10:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "17-11-1000", dateStr: "2026-11-17", dateDisplay: "Terça, 17/11/2026", timeDisplay: "10:00 - 10:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "17-11-1030", dateStr: "2026-11-17", dateDisplay: "Terça, 17/11/2026", timeDisplay: "10:30 - 11:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "17-11-1100", dateStr: "2026-11-17", dateDisplay: "Terça, 17/11/2026", timeDisplay: "11:00 - 11:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "17-11-1130", dateStr: "2026-11-17", dateDisplay: "Terça, 17/11/2026", timeDisplay: "11:30 - 12:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+
+            { id: "18-11-0900", dateStr: "2026-11-18", dateDisplay: "Quarta, 18/11/2026", timeDisplay: "09:00 - 09:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "18-11-0930", dateStr: "2026-11-18", dateDisplay: "Quarta, 18/11/2026", timeDisplay: "09:30 - 10:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "18-11-1000", dateStr: "2026-11-18", dateDisplay: "Quarta, 18/11/2026", timeDisplay: "10:00 - 10:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "18-11-1030", dateStr: "2026-11-18", dateDisplay: "Quarta, 18/11/2026", timeDisplay: "10:30 - 11:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "18-11-1100", dateStr: "2026-11-18", dateDisplay: "Quarta, 18/11/2026", timeDisplay: "11:00 - 11:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "18-11-1130", dateStr: "2026-11-18", dateDisplay: "Quarta, 18/11/2026", timeDisplay: "11:30 - 12:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+
+            // Slot Marcado no enunciado do e-mail
+            { id: "19-11-0900", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "09:00 - 09:30", window: 1, isOccupied: true, team: "Time Sudeste", owner: "Diogo Paim Gonçalves", notes: "Esta data já foi ocupada pelo time sudeste" },
+            { id: "19-11-0930", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "09:30 - 10:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "19-11-1000", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "10:00 - 10:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "19-11-1030", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "10:30 - 11:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "19-11-1100", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "11:00 - 11:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+            { id: "19-11-1130", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "11:30 - 12:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
+
+            // --- JANELA 2: 24 a 26/11 (09h00 – 12h00) & (14h00 – 16h00) ---
+            ...generateWindowSlots(["2026-11-24", "2026-11-25", "2026-11-26"], [
+                {day: "Terça", dates: "24/11/2026"},
+                {day: "Quarta", dates: "25/11/2026"},
+                {day: "Quinta", dates: "26/11/2026"}
+            ], 2),
+
+            // --- JANELA 3: 02 a 04/12 (09h00 – 12h00) & (14h00 – 16h00) ---
+            ...generateWindowSlots(["2026-12-02", "2026-12-03", "2026-12-04"], [
+                {day: "Quarta", dates: "02/12/2026"},
+                {day: "Quinta", dates: "03/12/2026"},
+                {day: "Sexta", dates: "04/12/2026"}
+            ], 3)
+        ];
+
+        // Função utilitária para gerar os slots das janelas 2 e 3
+        function generateWindowSlots(dateStrs, dateDisplays, windowNum) {
+            let slots = [];
+            const timeRanges = [
+                "09:00 - 09:30", "09:30 - 10:00", "10:00 - 10:30", "10:30 - 11:00", "11:00 - 11:30", "11:30 - 12:00",
+                "14:00 - 14:30", "14:30 - 15:00", "15:00 - 15:30", "15:30 - 16:00"
+            ];
+
+            dateStrs.forEach((dateStr, idx) => {
+                const info = dateDisplays[idx];
+                timeRanges.forEach((tr, tIdx) => {
+                    const id = `w${windowNum}-${dateStr.substr(8,2)}-${tIdx}`;
+                    slots.push({
+                        id: id,
+                        dateStr: dateStr,
+                        dateDisplay: `${info.day}, ${info.dates}`,
+                        timeDisplay: tr,
+                        window: windowNum,
+                        isOccupied: false,
+                        team: "",
+                        owner: "",
+                        notes: ""
+                    });
+                });
+            });
+
+            return slots;
+        }
+
+        let currentFilter = 'all';
+
+        // Inicialização da Página
+        window.onload = function() {
+            renderParticipants();
+            renderGridSlots();
+            renderCalendars();
+            updateKPIs();
+        }
+
+        // Renderizar Lista de Participantes no Modal
+        function renderParticipants() {
+            const containerPara = document.getElementById('list-para');
+            const containerCc = document.getElementById('list-cc');
+            
+            containerPara.innerHTML = participantsPara.map(p => `
+                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-100 border border-slate-200">
+                    <span class="w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold text-[10px]">
+                        ${p.split(' ').map(n=>n[0]).slice(0,2).join('')}
+                    </span>
+                    <span class="font-medium text-slate-800">${p}</span>
+                </div>
+            `).join('');
+
+            containerCc.innerHTML = participantsCc.map(p => `
+                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600">
+                    <span class="w-6 h-6 rounded-full bg-slate-300 text-slate-700 flex items-center justify-center font-bold text-[10px]">
+                        ${p.split(' ').map(n=>n[0]).slice(0,2).join('')}
+                    </span>
+                    <span>${p}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('count-participants').innerText = participantsPara.length + participantsCc.length;
+        }
+
+        // Renderizar Grade de Horários por Janelas
+        function renderGridSlots() {
+            const w1Grid = document.getElementById('window-1-grid');
+            const w2Grid = document.getElementById('window-2-grid');
+            const w3Grid = document.getElementById('window-3-grid');
+
+            w1Grid.innerHTML = buildWindowHTML(1);
+            w2Grid.innerHTML = buildWindowHTML(2);
+            w3Grid.innerHTML = buildWindowHTML(3);
+        }
+
+        function buildWindowHTML(windowNum) {
+            const windowSlots = scheduleData.filter(s => s.window === windowNum);
+            
+            // Agrupar por data
+            const dates = [...new Set(windowSlots.map(s => s.dateDisplay))];
+            
+            return dates.map(dDisplay => {
+                const slotsForDay = windowSlots.filter(s => s.dateDisplay === dDisplay);
+                
+                return `
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 flex flex-col justify-between">
+                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
+                            <span class="font-bold text-slate-700 text-sm flex items-center gap-2">
+                                <i class="fa-regular fa-calendar-day text-brand-orange"></i> ${dDisplay}
+                            </span>
+                            <span class="text-[11px] font-semibold text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
+                                ${slotsForDay.filter(s=>!s.isOccupied).length} vagas
+                            </span>
+                        </div>
+
+                        <div class="space-y-2 max-h-80 overflow-y-auto custom-scrollbar pr-1">
+                            ${slotsForDay.map(slot => {
+                                // Aplicação do Filtro
+                                if (currentFilter === 'free' && slot.isOccupied) return '';
+                                if (currentFilter === 'occupied' && !slot.isOccupied) return '';
+
+                                if (slot.isOccupied) {
+                                    return `
+                                        <div onclick="openBookingModal('${slot.id}')" class="p-3 rounded-xl border border-rose-200 bg-rose-50/80 hover:bg-rose-100 transition cursor-pointer flex items-center justify-between group">
+                                            <div>
+                                                <div class="flex items-center gap-1.5 text-xs font-bold text-rose-700">
+                                                    <i class="fa-solid fa-lock text-rose-500"></i> ${slot.timeDisplay}
+                                                </div>
+                                                <p class="text-xs font-semibold text-slate-800 mt-1">${slot.team}</p>
+                                                <p class="text-[10px] text-slate-500">${slot.owner}</p>
+                                            </div>
+                                            <span class="text-[10px] bg-rose-200 text-rose-800 font-bold px-2 py-1 rounded-md group-hover:bg-rose-300">
+                                                Ocupado
+                                            </span>
+                                        </div>
+                                    `;
+                                } else {
+                                    return `
+                                        <div onclick="openBookingModal('${slot.id}')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
+                                            <div class="flex items-center gap-2">
+                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                                <span class="text-xs font-medium text-slate-700">${slot.timeDisplay}</span>
+                                            </div>
+                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
+                                                Livre +
+                                            </span>
+                                        </div>
+                                    `;
+                                }
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Renderização dos Calendários Mensais
+        function renderCalendars() {
+            // Novembro 2026 (Começa em Domingo - 0)
+            const novGrid = document.getElementById('cal-nov-grid');
+            let novHtml = '';
+            
+            // Espaços em branco para início de Novembro (Dom:1/Nov/2026) -> Dom=0
+            for(let day=1; day<=30; day++) {
+                const dateStr = `2026-11-${day < 10 ? '0'+day : day}`;
+                const slotsOnDay = scheduleData.filter(s => s.dateStr === dateStr);
+                const hasSlots = slotsOnDay.length > 0;
+                const hasOccupied = slotsOnDay.some(s => s.isOccupied);
+
+                let cellClass = "p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition ";
+                if(hasSlots) {
+                    cellClass += hasOccupied ? "bg-rose-50 border-rose-200 text-rose-900 cursor-pointer hover:shadow-md" : "bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer hover:shadow-md";
+                } else {
+                    cellClass += "bg-slate-50 border-slate-100 text-slate-400 opacity-60";
+                }
+
+                novHtml += `
+                    <div class="${cellClass}" onclick="${hasSlots ? `filterCalendarDay('${dateStr}')` : ''}">
+                        <span class="font-bold text-xs">${day}</span>
+                        ${hasSlots ? `
+                            <div class="text-[9px]">
+                                ${hasOccupied ? `<span class="bg-rose-200 text-rose-800 font-bold px-1 py-0.5 rounded block text-center">Sudeste/Ocup</span>` : `<span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">${slotsOnDay.length} vagas</span>`}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+            novGrid.innerHTML = novHtml;
+
+            // Dezembro 2026
+            const decGrid = document.getElementById('cal-dec-grid');
+            let decHtml = '';
+            
+            // Offset Terça-feira (1/Dez/2026 é Terça -> 2 células vazias)
+            decHtml += '<div class="p-2"></div><div class="p-2"></div>';
+
+            for(let day=1; day<=31; day++) {
+                const dateStr = `2026-12-${day < 10 ? '0'+day : day}`;
+                const slotsOnDay = scheduleData.filter(s => s.dateStr === dateStr);
+                const hasSlots = slotsOnDay.length > 0;
+                const hasOccupied = slotsOnDay.some(s => s.isOccupied);
+
+                let cellClass = "p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition ";
+                if(hasSlots) {
+                    cellClass += hasOccupied ? "bg-rose-50 border-rose-200 text-rose-900 cursor-pointer hover:shadow-md" : "bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer hover:shadow-md";
+                } else {
+                    cellClass += "bg-slate-50 border-slate-100 text-slate-400 opacity-60";
+                }
+
+                decHtml += `
+                    <div class="${cellClass}" onclick="${hasSlots ? `filterCalendarDay('${dateStr}')` : ''}">
+                        <span class="font-bold text-xs">${day}</span>
+                        ${hasSlots ? `
+                            <div class="text-[9px]">
+                                ${hasOccupied ? `<span class="bg-rose-200 text-rose-800 font-bold px-1 py-0.5 rounded block text-center">Ocupado</span>` : `<span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">${slotsOnDay.length} vagas</span>`}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+            decGrid.innerHTML = decHtml;
+        }
+
+        // Atualizar KPIs
+        function updateKPIs() {
+            const totalSlots = scheduleData.length;
+            const occupiedSlots = scheduleData.filter(s => s.isOccupied).length;
+            const freeSlots = totalSlots - occupiedSlots;
+
+            // Cada slot = 30 min = 0.5 hora
+            const totalHours = (totalSlots * 0.5).toFixed(1);
+            const freeHours = (freeSlots * 0.5).toFixed(1);
+
+            const occupancyRate = ((occupiedSlots / totalSlots) * 100).toFixed(1);
+
+            document.getElementById('kpi-total-hours').innerText = `${totalHours}h 00m`;
+            document.getElementById('kpi-free-slots').innerText = `${freeSlots} Slots`;
+            document.getElementById('kpi-free-hours').innerText = `${freeHours}h`;
+            document.getElementById('kpi-busy-slots').innerText = `${occupiedSlots} ${occupiedSlots === 1 ? 'Slot' : 'Slots'}`;
+            document.getElementById('kpi-occupancy-rate').innerText = `${occupancyRate}%`;
+            document.getElementById('kpi-bar-occupancy').style.width = `${occupancyRate}%`;
+        }
+
+        // Alternar Visualização (Slots vs Calendário)
+        function switchView(view) {
+            const slotsContainer = document.getElementById('slots-view-container');
+            const calendarContainer = document.getElementById('calendar-view-container');
+            const slotsBtn = document.getElementById('view-slots-btn');
+            const calBtn = document.getElementById('view-calendar-btn');
+
+            if(view === 'slots') {
+                slotsContainer.classList.remove('hidden');
+                calendarContainer.classList.add('hidden');
+                
+                slotsBtn.className = "flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg transition-all bg-white text-brand-blue shadow";
+                calBtn.className = "flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all";
+            } else {
+                slotsContainer.classList.add('hidden');
+                calendarContainer.classList.remove('hidden');
+
+                calBtn.className = "flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg transition-all bg-white text-brand-blue shadow";
+                slotsBtn.className = "flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all";
+            }
+        }
+
+        // Filtro por dia ao clicar no Calendário
+        function filterCalendarDay(dateStr) {
+            switchView('slots');
+            // Role até o elemento se necessário ou notifique
+        }
+
+        // Filtros de Status (Todos, Livres, Ocupados)
+        function filterSlots(type) {
+            currentFilter = type;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if(btn.dataset.filter === type) {
+                    btn.className = "filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-brand-blue text-white transition shadow-sm";
+                } else {
+                    btn.className = "filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition";
+                }
+            });
+            renderGridSlots();
+        }
+
+        // Modal de Agendamento
+        function openBookingModal(slotId = null) {
+            let slot = null;
+            if (slotId) {
+                slot = scheduleData.find(s => s.id === slotId);
+            } else {
+                // Pegar o primeiro slot livre
+                slot = scheduleData.find(s => !s.isOccupied) || scheduleData[0];
+            }
+
+            if (!slot) return;
+
+            document.getElementById('booking-slot-id').value = slot.id;
+            document.getElementById('modal-slot-datetime').innerText = `${slot.dateDisplay} às ${slot.timeDisplay}`;
+            
+            const occupiedActions = document.getElementById('occupied-actions');
+            const submitBtn = document.getElementById('save-booking-btn');
+
+            if(slot.isOccupied) {
+                document.getElementById('booking-modal-title').innerText = "Detalhes do Agendamento";
+                document.getElementById('booking-team-name').value = slot.team;
+                document.getElementById('booking-owner').value = slot.owner;
+                document.getElementById('booking-notes').value = slot.notes;
+                occupiedActions.classList.remove('hidden');
+                submitBtn.innerText = "Atualizar Reserva";
+            } else {
+                document.getElementById('booking-modal-title').innerText = "Agendar Treinamento";
+                document.getElementById('booking-team-name').value = "";
+                document.getElementById('booking-owner').value = "";
+                document.getElementById('booking-notes').value = "";
+                occupiedActions.classList.add('hidden');
+                submitBtn.innerText = "Confirmar Reserva";
+            }
+
+            document.getElementById('modal-booking').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('modal-booking').classList.add('hidden');
+        }
+
+        function handleBookingSubmit(event) {
+            event.preventDefault();
+            const slotId = document.getElementById('booking-slot-id').value;
+            const team = document.getElementById('booking-team-name').value;
+            const owner = document.getElementById('booking-owner').value;
+            const notes = document.getElementById('booking-notes').value;
+
+            const slotIndex = scheduleData.findIndex(s => s.id === slotId);
+            if(slotIndex !== -1) {
+                scheduleData[slotIndex].isOccupied = true;
+                scheduleData[slotIndex].team = team;
+                scheduleData[slotIndex].owner = owner;
+                scheduleData[slotIndex].notes = notes;
+
+                renderGridSlots();
+                renderCalendars();
+                updateKPIs();
+                closeBookingModal();
+            }
+        }
+
+        function releaseSlot() {
+            const slotId = document.getElementById('booking-slot-id').value;
+            const slotIndex = scheduleData.findIndex(s => s.id === slotId);
+            if(slotIndex !== -1) {
+                scheduleData[slotIndex].isOccupied = false;
+                scheduleData[slotIndex].team = "";
+                scheduleData[slotIndex].owner = "";
+                scheduleData[slotIndex].notes = "";
+
+                renderGridSlots();
+                renderCalendars();
+                updateKPIs();
+                closeBookingModal();
+            }
+        }
+
+        // Modais de Participantes
+        function openParticipantsModal() {
+            document.getElementById('modal-participants').classList.remove('hidden');
+        }
+
+        function closeParticipantsModal() {
+            document.getElementById('modal-participants').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
