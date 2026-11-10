@@ -1,13 +1,15 @@
-<html lang="pt-BR"><head>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Ocupação &amp; Agendamentos | Salesforce</title>
+    <title>Dashboard de Ocupação & Agendamentos | Salesforce</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Font Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -37,7 +39,7 @@
         .tab-active { border-bottom: 3px solid #F8820A; color: #06418a; font-weight: 600; }
         .glass-panel { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
     </style>
-<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-bottom-10{bottom:-2.5rem}.-right-10{right:-2.5rem}.bottom-0{bottom:0px}.right-0{right:0px}.top-0{top:0px}.z-10{z-index:10}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.ml-auto{margin-left:auto}.mr-1{margin-right:0.25rem}.mr-2{margin-right:0.5rem}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-4{margin-top:1rem}.mt-auto{margin-top:auto}.mb-3{margin-bottom:0.75rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-12{height:3rem}.h-2{height:0.5rem}.h-24{height:6rem}.h-3{height:0.75rem}.h-16{height:4rem}.h-6{height:1.5rem}.max-h-\[90vh\]{max-height:90vh}.max-h-80{max-height:20rem}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-12{width:3rem}.w-2{width:0.5rem}.w-28{width:7rem}.w-3{width:0.75rem}.w-auto{width:auto}.w-full{width:100%}.w-px{width:1px}.w-6{width:1.5rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-7xl{max-width:80rem}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-7{grid-template-columns:repeat(7, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-3 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.75rem * var(--tw-space-x-reverse));margin-left:calc(0.75rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-6 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-blue-100{--tw-border-opacity:1;border-color:rgb(219 234 254 / var(--tw-border-opacity, 1))}.border-brand-blue{--tw-border-opacity:1;border-color:rgb(6 65 138 / var(--tw-border-opacity, 1))}.border-brand-orange\/40{border-color:rgb(248 130 10 / 0.4)}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225 / var(--tw-border-opacity, 1))}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-emerald-200{--tw-border-opacity:1;border-color:rgb(167 243 208 / var(--tw-border-opacity, 1))}.border-emerald-200\/60{border-color:rgb(167 243 208 / 0.6)}.border-rose-200{--tw-border-opacity:1;border-color:rgb(254 205 211 / var(--tw-border-opacity, 1))}.border-slate-200\/80{border-color:rgb(226 232 240 / 0.8)}.bg-blue-50{--tw-bg-opacity:1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.bg-brand-blue{--tw-bg-opacity:1;background-color:rgb(6 65 138 / var(--tw-bg-opacity, 1))}.bg-brand-orange{--tw-bg-opacity:1;background-color:rgb(248 130 10 / var(--tw-bg-opacity, 1))}.bg-brand-orange\/20{background-color:rgb(248 130 10 / 0.2)}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-orange-50{--tw-bg-opacity:1;background-color:rgb(255 247 237 / var(--tw-bg-opacity, 1))}.bg-rose-100{--tw-bg-opacity:1;background-color:rgb(255 228 230 / var(--tw-bg-opacity, 1))}.bg-rose-50{--tw-bg-opacity:1;background-color:rgb(255 241 242 / var(--tw-bg-opacity, 1))}.bg-rose-500{--tw-bg-opacity:1;background-color:rgb(244 63 94 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-200{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.bg-slate-200\/60{background-color:rgb(226 232 240 / 0.6)}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-slate-700{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.bg-slate-900\/60{background-color:rgb(15 23 42 / 0.6)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/20{background-color:rgb(255 255 255 / 0.2)}.bg-emerald-100{--tw-bg-opacity:1;background-color:rgb(209 250 229 / var(--tw-bg-opacity, 1))}.bg-emerald-200{--tw-bg-opacity:1;background-color:rgb(167 243 208 / var(--tw-bg-opacity, 1))}.bg-emerald-50\/40{background-color:rgb(236 253 245 / 0.4)}.bg-rose-200{--tw-bg-opacity:1;background-color:rgb(254 205 211 / var(--tw-bg-opacity, 1))}.bg-rose-50\/80{background-color:rgb(255 241 242 / 0.8)}.bg-slate-300{--tw-bg-opacity:1;background-color:rgb(203 213 225 / var(--tw-bg-opacity, 1))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-brand-blue{--tw-gradient-from:#06418a var(--tw-gradient-from-position);--tw-gradient-to:rgb(6 65 138 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-blue-900{--tw-gradient-to:#1e3a8a var(--tw-gradient-to-position)}.object-contain{object-fit:contain}.p-1{padding:0.25rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-2{padding:0.5rem}.p-2\.5{padding:0.625rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pt-2{padding-top:0.5rem}.pb-3{padding-bottom:0.75rem}.pr-1{padding-right:0.25rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.text-2xl{font-size:1.5rem;line-height:2rem}.text-9xl{font-size:8rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[9px\]{font-size:9px}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.tracking-wider{letter-spacing:0.05em}.text-brand-blue{--tw-text-opacity:1;color:rgb(6 65 138 / var(--tw-text-opacity, 1))}.text-brand-orange{--tw-text-opacity:1;color:rgb(248 130 10 / var(--tw-text-opacity, 1))}.text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105 / var(--tw-text-opacity, 1))}.text-orange-200{--tw-text-opacity:1;color:rgb(254 215 170 / var(--tw-text-opacity, 1))}.text-rose-600{--tw-text-opacity:1;color:rgb(225 29 72 / var(--tw-text-opacity, 1))}.text-rose-700{--tw-text-opacity:1;color:rgb(190 18 60 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/5{color:rgb(255 255 255 / 0.05)}.text-emerald-800{--tw-text-opacity:1;color:rgb(6 95 70 / var(--tw-text-opacity, 1))}.text-emerald-900{--tw-text-opacity:1;color:rgb(6 78 59 / var(--tw-text-opacity, 1))}.text-rose-500{--tw-text-opacity:1;color:rgb(244 63 94 / var(--tw-text-opacity, 1))}.text-rose-800{--tw-text-opacity:1;color:rgb(159 18 57 / var(--tw-text-opacity, 1))}.text-rose-900{--tw-text-opacity:1;color:rgb(136 19 55 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-60{opacity:0.6}.opacity-90{opacity:0.9}.shadow{--tw-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:bg-orange-600:hover{--tw-bg-opacity:1;background-color:rgb(234 88 12 / var(--tw-bg-opacity, 1))}.hover\:bg-rose-200:hover{--tw-bg-opacity:1;background-color:rgb(254 205 211 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-100:hover{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-200:hover{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.hover\:bg-emerald-100\/60:hover{background-color:rgb(209 250 229 / 0.6)}.hover\:bg-rose-100:hover{--tw-bg-opacity:1;background-color:rgb(255 228 230 / var(--tw-bg-opacity, 1))}.hover\:text-slate-900:hover{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:shadow-md:hover{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-brand-blue:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(6 65 138 / var(--tw-ring-opacity, 1))}.group:hover .group-hover\:bg-emerald-200{--tw-bg-opacity:1;background-color:rgb(167 243 208 / var(--tw-bg-opacity, 1))}.group:hover .group-hover\:bg-rose-300{--tw-bg-opacity:1;background-color:rgb(253 164 175 / var(--tw-bg-opacity, 1))}@media (min-width: 640px){.sm\:block{display:block}.sm\:h-12{height:3rem}.sm\:w-auto{width:auto}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 768px){.md\:inline{display:inline}.md\:flex{display:flex}.md\:w-auto{width:auto}.md\:flex-none{flex:none}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}}@media (min-width: 1024px){.lg\:inline{display:inline}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:px-8{padding-left:2rem;padding-right:2rem}}</style></head>
+</head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col">
 
     <!-- Header Principal -->
@@ -45,9 +47,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-24">
                 <div class="flex items-center space-x-6">
-                    <!-- Logo Oficial Bertolini Ajustado (Sem nuvem/fundo laranja) -->
+                    <!-- Logo Oficial Bertolini -->
                     <div class="flex items-center justify-center py-2 px-1">
-                        <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-claro.svg" alt="Logo Bertolini Armazenagem" class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/200x50/06418a/ffffff?text=BERTOLINI';">
+                        <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-claro.svg" 
+                             alt="Logo Bertolini Armazenagem" 
+                             class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                             onerror="this.onerror=null; this.src='https://placehold.co/200x50/06418a/ffffff?text=BERTOLINI';">
                     </div>
 
                     <div class="h-10 w-px bg-white/20 hidden sm:block"></div>
@@ -55,7 +60,10 @@
                     <div>
                         <div class="flex items-center gap-2">
                             <span class="bg-brand-orange/20 text-orange-200 text-xs px-2.5 py-0.5 rounded-full font-medium uppercase tracking-wider border border-brand-orange/40">Treinamento Oficial</span>
-                            <span class="text-xs text-slate-300 hidden md:inline"><i class="fa-regular fa-clock mr-1"></i>Novembro &amp; Dezembro 2026</span>
+                            <span class="text-xs text-slate-300 hidden md:inline"><i class="fa-regular fa-clock mr-1"></i>Novembro & Dezembro 2026</span>
+                            <span id="sync-status" class="bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 text-[11px] px-2 py-0.5 rounded-full flex items-center gap-1.5 font-medium">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Em Tempo Real
+                            </span>
                         </div>
                         <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white leading-tight mt-0.5">
                             1º Treinamento - SALES FORCE <span class="text-slate-300 font-normal text-sm hidden lg:inline">(preenchimento de campos específicos)</span>
@@ -73,7 +81,7 @@
                     </div>
                     <div class="text-left text-xs">
                         <p class="font-semibold text-white">Diogo Paim Gonçalves</p>
-                        <p class="text-slate-300">Instrutor &amp; Facilitador</p>
+                        <p class="text-slate-300">Instrutor & Facilitador</p>
                     </div>
                 </div>
             </div>
@@ -83,26 +91,51 @@
     <!-- Conteúdo Principal -->
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
 
-        <!-- Banner Informativo da Origem / Contexto -->
+        <!-- Banner Informativo da Origem + Barra de Última Alteração -->
         <div class="bg-gradient-to-r from-brand-blue to-blue-900 text-white rounded-2xl p-5 shadow-lg relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <div class="relative z-10 max-w-3xl">
+            <div class="relative z-10 max-w-2xl">
                 <div class="flex items-center gap-2 text-brand-orange font-semibold text-sm mb-1">
-                    <i class="fa-solid fa-envelope-open-text"></i> Alinhamento da Agenda por E-mail
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Sincronização e Reserva Colaborativa
                 </div>
                 <p class="text-sm text-slate-200 leading-relaxed">
-                    Janelas de disponibilidade definidas por <strong>Diogo Paim Gonçalves</strong> para realização do treinamento de Sales Force. Utilize esta ferramenta para alocar sua equipe nos horários livres.
+                    Janelas de disponibilidade definidas por <strong>Diogo Paim Gonçalves</strong>. Qualquer alteração ou agendamento feito por qualquer participante é salvo e sincronizado em tempo real.
                 </p>
             </div>
-            <div class="flex gap-2 flex-wrap relative z-10 w-full md:w-auto">
-                <button onclick="openParticipantsModal()" class="w-full sm:w-auto px-4 py-2.5 bg-white text-brand-blue hover:bg-slate-100 font-semibold rounded-xl text-sm transition-all shadow flex items-center justify-center gap-2">
+            
+            <div class="flex flex-col sm:flex-row gap-2 relative z-10 w-full md:w-auto">
+                <!-- Botão Ver Participantes -->
+                <button onclick="openParticipantsModal()" class="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold rounded-xl text-xs transition-all shadow flex items-center justify-center gap-2">
                     <i class="fa-solid fa-users text-brand-orange"></i>
-                    Ver Lista de Convocados (<span id="count-participants">12</span>)
+                    Convocados (<span id="count-participants">12</span>)
+                </button>
+
+                <!-- Botão Ver Histórico -->
+                <button onclick="openAuditModal()" class="px-4 py-2.5 bg-brand-orange hover:bg-orange-600 text-white font-semibold rounded-xl text-xs transition-all shadow flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    Histórico de Alterações (<span id="count-logs">0</span>)
                 </button>
             </div>
+
             <!-- Elemento Decorativo no fundo -->
             <div class="absolute -right-10 -bottom-10 text-white/5 pointer-events-none text-9xl">
                 <i class="fa-solid fa-calendar-check"></i>
             </div>
+        </div>
+
+        <!-- Banner com a informação de Última Alteração -->
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 px-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-700 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <div class="text-xs">
+                    <span class="font-bold text-amber-900 uppercase tracking-wider block text-[10px]">Última Modificação Registrada</span>
+                    <span id="last-update-info" class="text-amber-800 font-medium">Carregando informações do histórico...</span>
+                </div>
+            </div>
+            <button onclick="openAuditModal()" class="text-xs font-semibold text-amber-800 hover:text-amber-900 underline shrink-0">
+                Ver Todo o Histórico
+            </button>
         </div>
 
         <!-- Cards de KPI -->
@@ -111,7 +144,7 @@
             <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex items-center justify-between hover:shadow-md transition">
                 <div>
                     <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Janela de Horários</p>
-                    <h3 class="text-2xl font-bold text-slate-800 mt-1" id="kpi-total-hours">39.0h 00m</h3>
+                    <h3 class="text-2xl font-bold text-slate-800 mt-1" id="kpi-total-hours">45h 00m</h3>
                     <p class="text-xs text-slate-500 mt-1">Disponibilizadas no e-mail</p>
                 </div>
                 <div class="w-12 h-12 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center text-xl">
@@ -123,8 +156,8 @@
             <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex items-center justify-between hover:shadow-md transition">
                 <div>
                     <p class="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Slots Livres</p>
-                    <h3 class="text-2xl font-bold text-emerald-600 mt-1" id="kpi-free-slots">77 Slots</h3>
-                    <p class="text-xs text-slate-500 mt-1"><span id="kpi-free-hours">38.5h</span> disponíveis</p>
+                    <h3 class="text-2xl font-bold text-emerald-600 mt-1" id="kpi-free-slots">89 Slots</h3>
+                    <p class="text-xs text-slate-500 mt-1"><span id="kpi-free-hours">44h 30m</span> disponíveis</p>
                 </div>
                 <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl">
                     <i class="fa-solid fa-circle-check"></i>
@@ -136,7 +169,7 @@
                 <div>
                     <p class="text-xs font-semibold text-rose-600 uppercase tracking-wider">Reservado / Ocupado</p>
                     <h3 class="text-2xl font-bold text-rose-600 mt-1" id="kpi-busy-slots">1 Slot</h3>
-                    <p class="text-xs text-slate-500 mt-1">Time Sudeste (19/11 9h)</p>
+                    <p class="text-xs text-slate-500 mt-1">Sincronizado via Firestore</p>
                 </div>
                 <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl">
                     <i class="fa-solid fa-user-lock"></i>
@@ -147,9 +180,9 @@
             <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex items-center justify-between hover:shadow-md transition">
                 <div>
                     <p class="text-xs font-semibold text-brand-orange uppercase tracking-wider">Taxa de Ocupação</p>
-                    <h3 class="text-2xl font-bold text-brand-blue mt-1" id="kpi-occupancy-rate">1.3%</h3>
+                    <h3 class="text-2xl font-bold text-brand-blue mt-1" id="kpi-occupancy-rate">1.1%</h3>
                     <div class="w-full bg-slate-100 rounded-full h-2 mt-2 w-28 overflow-hidden">
-                        <div id="kpi-bar-occupancy" class="bg-brand-orange h-2 rounded-full" style="width: 1.3%;"></div>
+                        <div id="kpi-bar-occupancy" class="bg-brand-orange h-2 rounded-full" style="width: 1.1%"></div>
                     </div>
                 </div>
                 <div class="w-12 h-12 rounded-xl bg-orange-50 text-brand-orange flex items-center justify-center text-xl">
@@ -203,233 +236,7 @@
                     <span class="text-xs text-slate-500 font-medium">Slots de 30 min | 3 Dias disponíveis</span>
                 </div>
                 <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6" id="window-1-grid">
-                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 flex flex-col justify-between">
-                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-                            <span class="font-bold text-slate-700 text-sm flex items-center gap-2">
-                                <i class="fa-regular fa-calendar-day text-brand-orange"></i> Terça, 17/11/2026
-                            </span>
-                            <span class="text-[11px] font-semibold text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
-                                6 vagas
-                            </span>
-                        </div>
-
-                        <div class="space-y-2 max-h-80 overflow-y-auto custom-scrollbar pr-1">
-                            
-                                        <div onclick="openBookingModal('17-11-0900')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:00 - 09:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('17-11-0930')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:30 - 10:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('17-11-1000')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:00 - 10:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('17-11-1030')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:30 - 11:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('17-11-1100')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:00 - 11:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('17-11-1130')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:30 - 12:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                        </div>
-                    </div>
-                
-                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 flex flex-col justify-between">
-                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-                            <span class="font-bold text-slate-700 text-sm flex items-center gap-2">
-                                <i class="fa-regular fa-calendar-day text-brand-orange"></i> Quarta, 18/11/2026
-                            </span>
-                            <span class="text-[11px] font-semibold text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
-                                6 vagas
-                            </span>
-                        </div>
-
-                        <div class="space-y-2 max-h-80 overflow-y-auto custom-scrollbar pr-1">
-                            
-                                        <div onclick="openBookingModal('18-11-0900')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:00 - 09:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('18-11-0930')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:30 - 10:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('18-11-1000')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:00 - 10:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('18-11-1030')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:30 - 11:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('18-11-1100')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:00 - 11:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('18-11-1130')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:30 - 12:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                        </div>
-                    </div>
-                
-                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 flex flex-col justify-between">
-                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-                            <span class="font-bold text-slate-700 text-sm flex items-center gap-2">
-                                <i class="fa-regular fa-calendar-day text-brand-orange"></i> Quinta, 19/11/2026
-                            </span>
-                            <span class="text-[11px] font-semibold text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
-                                5 vagas
-                            </span>
-                        </div>
-
-                        <div class="space-y-2 max-h-80 overflow-y-auto custom-scrollbar pr-1">
-                            
-                                        <div onclick="openBookingModal('19-11-0900')" class="p-3 rounded-xl border border-rose-200 bg-rose-50/80 hover:bg-rose-100 transition cursor-pointer flex items-center justify-between group">
-                                            <div>
-                                                <div class="flex items-center gap-1.5 text-xs font-bold text-rose-700">
-                                                    <i class="fa-solid fa-lock text-rose-500"></i> 09:00 - 09:30
-                                                </div>
-                                                <p class="text-xs font-semibold text-slate-800 mt-1">Time Sudeste</p>
-                                                <p class="text-[10px] text-slate-500">Diogo Paim Gonçalves</p>
-                                            </div>
-                                            <span class="text-[10px] bg-rose-200 text-rose-800 font-bold px-2 py-1 rounded-md group-hover:bg-rose-300">
-                                                Ocupado
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('19-11-0930')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:30 - 10:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('19-11-1000')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:00 - 10:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('19-11-1030')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:30 - 11:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('19-11-1100')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:00 - 11:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('19-11-1130')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:30 - 12:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                        </div>
-                    </div>
+                    <!-- Gerado Dinamicamente -->
                 </div>
             </div>
 
@@ -444,350 +251,7 @@
                     <span class="text-xs text-slate-500 font-medium">Slots de 30 min | 3 Dias disponíveis</span>
                 </div>
                 <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6" id="window-2-grid">
-                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 flex flex-col justify-between">
-                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-                            <span class="font-bold text-slate-700 text-sm flex items-center gap-2">
-                                <i class="fa-regular fa-calendar-day text-brand-orange"></i> Terça, 24/11/2026
-                            </span>
-                            <span class="text-[11px] font-semibold text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
-                                10 vagas
-                            </span>
-                        </div>
-
-                        <div class="space-y-2 max-h-80 overflow-y-auto custom-scrollbar pr-1">
-                            
-                                        <div onclick="openBookingModal('w2-24-0')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:00 - 09:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-24-1')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:30 - 10:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-24-2')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:00 - 10:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-24-3')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:30 - 11:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-24-4')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:00 - 11:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-24-5')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:30 - 12:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-24-6')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">14:00 - 14:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-24-7')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">14:30 - 15:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-24-8')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">15:00 - 15:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-24-9')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">15:30 - 16:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                        </div>
-                    </div>
-                
-                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 flex flex-col justify-between">
-                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-                            <span class="font-bold text-slate-700 text-sm flex items-center gap-2">
-                                <i class="fa-regular fa-calendar-day text-brand-orange"></i> Quarta, 25/11/2026
-                            </span>
-                            <span class="text-[11px] font-semibold text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
-                                10 vagas
-                            </span>
-                        </div>
-
-                        <div class="space-y-2 max-h-80 overflow-y-auto custom-scrollbar pr-1">
-                            
-                                        <div onclick="openBookingModal('w2-25-0')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:00 - 09:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-25-1')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:30 - 10:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-25-2')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:00 - 10:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-25-3')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:30 - 11:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-25-4')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:00 - 11:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-25-5')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:30 - 12:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-25-6')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">14:00 - 14:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-25-7')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">14:30 - 15:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-25-8')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">15:00 - 15:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-25-9')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">15:30 - 16:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                        </div>
-                    </div>
-                
-                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 flex flex-col justify-between">
-                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-                            <span class="font-bold text-slate-700 text-sm flex items-center gap-2">
-                                <i class="fa-regular fa-calendar-day text-brand-orange"></i> Quinta, 26/11/2026
-                            </span>
-                            <span class="text-[11px] font-semibold text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
-                                10 vagas
-                            </span>
-                        </div>
-
-                        <div class="space-y-2 max-h-80 overflow-y-auto custom-scrollbar pr-1">
-                            
-                                        <div onclick="openBookingModal('w2-26-0')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:00 - 09:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-26-1')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:30 - 10:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-26-2')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:00 - 10:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-26-3')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:30 - 11:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-26-4')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:00 - 11:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-26-5')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:30 - 12:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-26-6')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">14:00 - 14:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-26-7')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">14:30 - 15:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-26-8')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">15:00 - 15:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w2-26-9')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">15:30 - 16:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                        </div>
-                    </div>
+                    <!-- Gerado Dinamicamente -->
                 </div>
             </div>
 
@@ -802,356 +266,13 @@
                     <span class="text-xs text-slate-500 font-medium">Slots de 30 min | 3 Dias disponíveis</span>
                 </div>
                 <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6" id="window-3-grid">
-                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 flex flex-col justify-between">
-                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-                            <span class="font-bold text-slate-700 text-sm flex items-center gap-2">
-                                <i class="fa-regular fa-calendar-day text-brand-orange"></i> Quarta, 02/12/2026
-                            </span>
-                            <span class="text-[11px] font-semibold text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
-                                10 vagas
-                            </span>
-                        </div>
-
-                        <div class="space-y-2 max-h-80 overflow-y-auto custom-scrollbar pr-1">
-                            
-                                        <div onclick="openBookingModal('w3-02-0')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:00 - 09:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-02-1')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:30 - 10:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-02-2')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:00 - 10:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-02-3')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:30 - 11:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-02-4')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:00 - 11:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-02-5')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:30 - 12:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-02-6')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">14:00 - 14:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-02-7')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">14:30 - 15:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-02-8')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">15:00 - 15:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-02-9')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">15:30 - 16:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                        </div>
-                    </div>
-                
-                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 flex flex-col justify-between">
-                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-                            <span class="font-bold text-slate-700 text-sm flex items-center gap-2">
-                                <i class="fa-regular fa-calendar-day text-brand-orange"></i> Quinta, 03/12/2026
-                            </span>
-                            <span class="text-[11px] font-semibold text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
-                                10 vagas
-                            </span>
-                        </div>
-
-                        <div class="space-y-2 max-h-80 overflow-y-auto custom-scrollbar pr-1">
-                            
-                                        <div onclick="openBookingModal('w3-03-0')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:00 - 09:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-03-1')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:30 - 10:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-03-2')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:00 - 10:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-03-3')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:30 - 11:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-03-4')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:00 - 11:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-03-5')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:30 - 12:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-03-6')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">14:00 - 14:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-03-7')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">14:30 - 15:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-03-8')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">15:00 - 15:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-03-9')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">15:30 - 16:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                        </div>
-                    </div>
-                
-                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 flex flex-col justify-between">
-                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-                            <span class="font-bold text-slate-700 text-sm flex items-center gap-2">
-                                <i class="fa-regular fa-calendar-day text-brand-orange"></i> Sexta, 04/12/2026
-                            </span>
-                            <span class="text-[11px] font-semibold text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
-                                10 vagas
-                            </span>
-                        </div>
-
-                        <div class="space-y-2 max-h-80 overflow-y-auto custom-scrollbar pr-1">
-                            
-                                        <div onclick="openBookingModal('w3-04-0')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:00 - 09:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-04-1')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">09:30 - 10:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-04-2')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:00 - 10:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-04-3')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">10:30 - 11:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-04-4')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:00 - 11:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-04-5')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">11:30 - 12:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-04-6')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">14:00 - 14:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-04-7')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">14:30 - 15:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-04-8')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">15:00 - 15:30</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                                        <div onclick="openBookingModal('w3-04-9')" class="p-2.5 rounded-xl border border-emerald-200/60 bg-emerald-50/40 hover:bg-emerald-100/60 transition cursor-pointer flex items-center justify-between group">
-                                            <div class="flex items-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                <span class="text-xs font-medium text-slate-700">15:30 - 16:00</span>
-                                            </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
-                                        </div>
-                                    
-                        </div>
-                    </div>
+                    <!-- Gerado Dinamicamente -->
                 </div>
             </div>
 
         </div>
 
-        <!-- PAINEL 2: Visualização de Calendário Mensal (Oculto por padrão) -->
+        <!-- PAINEL 2: Visualização de Calendário Mensal -->
         <div id="calendar-view-container" class="hidden space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 
@@ -1169,180 +290,8 @@
                     </div>
                     
                     <div class="grid grid-cols-7 gap-2 text-sm" id="cal-nov-grid">
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">1</span>
-                        
+                        <!-- Gerado por JS -->
                     </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">2</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">3</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">4</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">5</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">6</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">7</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">8</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">9</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">10</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">11</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">12</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">13</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">14</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">15</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">16</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer hover:shadow-md" onclick="filterCalendarDay('2026-11-17')">
-                        <span class="font-bold text-xs">17</span>
-                        
-                            <div class="text-[9px]">
-                                <span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">6 vagas</span>
-                            </div>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer hover:shadow-md" onclick="filterCalendarDay('2026-11-18')">
-                        <span class="font-bold text-xs">18</span>
-                        
-                            <div class="text-[9px]">
-                                <span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">6 vagas</span>
-                            </div>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-rose-50 border-rose-200 text-rose-900 cursor-pointer hover:shadow-md" onclick="filterCalendarDay('2026-11-19')">
-                        <span class="font-bold text-xs">19</span>
-                        
-                            <div class="text-[9px]">
-                                <span class="bg-rose-200 text-rose-800 font-bold px-1 py-0.5 rounded block text-center">Sudeste/Ocup</span>
-                            </div>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">20</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">21</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">22</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">23</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer hover:shadow-md" onclick="filterCalendarDay('2026-11-24')">
-                        <span class="font-bold text-xs">24</span>
-                        
-                            <div class="text-[9px]">
-                                <span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">10 vagas</span>
-                            </div>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer hover:shadow-md" onclick="filterCalendarDay('2026-11-25')">
-                        <span class="font-bold text-xs">25</span>
-                        
-                            <div class="text-[9px]">
-                                <span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">10 vagas</span>
-                            </div>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer hover:shadow-md" onclick="filterCalendarDay('2026-11-26')">
-                        <span class="font-bold text-xs">26</span>
-                        
-                            <div class="text-[9px]">
-                                <span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">10 vagas</span>
-                            </div>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">27</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">28</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">29</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">30</span>
-                        
-                    </div>
-                </div>
                 </div>
 
                 <!-- Calendário Dezembro 2026 -->
@@ -1358,174 +307,9 @@
                         <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
                     </div>
                     
-                    <div class="grid grid-cols-7 gap-2 text-sm" id="cal-dec-grid"><div class="p-2"></div><div class="p-2"></div>
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">1</span>
-                        
+                    <div class="grid grid-cols-7 gap-2 text-sm" id="cal-dec-grid">
+                        <!-- Gerado por JS -->
                     </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer hover:shadow-md" onclick="filterCalendarDay('2026-12-02')">
-                        <span class="font-bold text-xs">2</span>
-                        
-                            <div class="text-[9px]">
-                                <span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">10 vagas</span>
-                            </div>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer hover:shadow-md" onclick="filterCalendarDay('2026-12-03')">
-                        <span class="font-bold text-xs">3</span>
-                        
-                            <div class="text-[9px]">
-                                <span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">10 vagas</span>
-                            </div>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer hover:shadow-md" onclick="filterCalendarDay('2026-12-04')">
-                        <span class="font-bold text-xs">4</span>
-                        
-                            <div class="text-[9px]">
-                                <span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">10 vagas</span>
-                            </div>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">5</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">6</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">7</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">8</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">9</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">10</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">11</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">12</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">13</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">14</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">15</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">16</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">17</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">18</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">19</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">20</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">21</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">22</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">23</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">24</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">25</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">26</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">27</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">28</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">29</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">30</span>
-                        
-                    </div>
-                
-                    <div class="p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition bg-slate-50 border-slate-100 text-slate-400 opacity-60" onclick="">
-                        <span class="font-bold text-xs">31</span>
-                        
-                    </div>
-                </div>
                 </div>
 
             </div>
@@ -1549,9 +333,9 @@
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 mt-auto py-4 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
-            <p>1º Treinamento Salesforce © 2026 - Gestão de Ocupação por Equipes</p>
+            <p>1º Treinamento Salesforce &copy; 2026 - Gestão de Ocupação por Equipes</p>
             <p class="flex items-center gap-2">
-                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span> Sistema de Reserva Ativo
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span> Sincronizado via Firebase Realtime
             </p>
         </div>
     </footer>
@@ -1579,93 +363,13 @@
 
                 <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Destinatários Principais (Para)</h4>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="list-para">
-                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-100 border border-slate-200">
-                    <span class="w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold text-[10px]">
-                        RH
-                    </span>
-                    <span class="font-medium text-slate-800">Rafael Henrique Andrade de Carvalho</span>
+                    <!-- Dinâmico -->
                 </div>
-            
-                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-100 border border-slate-200">
-                    <span class="w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold text-[10px]">
-                        PC
-                    </span>
-                    <span class="font-medium text-slate-800">Patrick Casagrande</span>
-                </div>
-            
-                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-100 border border-slate-200">
-                    <span class="w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold text-[10px]">
-                        BF
-                    </span>
-                    <span class="font-medium text-slate-800">Bruna Fernanda Do Prado Ribeiro</span>
-                </div>
-            
-                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-100 border border-slate-200">
-                    <span class="w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold text-[10px]">
-                        RA
-                    </span>
-                    <span class="font-medium text-slate-800">Ronaldo Antunes</span>
-                </div>
-            
-                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-100 border border-slate-200">
-                    <span class="w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold text-[10px]">
-                        IS
-                    </span>
-                    <span class="font-medium text-slate-800">Israel Schimitz dos Santos</span>
-                </div>
-            </div>
 
                 <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-4">Em Cópia (Cc)</h4>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="list-cc">
-                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600">
-                    <span class="w-6 h-6 rounded-full bg-slate-300 text-slate-700 flex items-center justify-center font-bold text-[10px]">
-                        CB
-                    </span>
-                    <span>Cristiano Borges Fornari</span>
+                    <!-- Dinâmico -->
                 </div>
-            
-                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600">
-                    <span class="w-6 h-6 rounded-full bg-slate-300 text-slate-700 flex items-center justify-center font-bold text-[10px]">
-                        PD
-                    </span>
-                    <span>Poliana Da Silva Machado</span>
-                </div>
-            
-                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600">
-                    <span class="w-6 h-6 rounded-full bg-slate-300 text-slate-700 flex items-center justify-center font-bold text-[10px]">
-                        LM
-                    </span>
-                    <span>Lucas Merlo Ben</span>
-                </div>
-            
-                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600">
-                    <span class="w-6 h-6 rounded-full bg-slate-300 text-slate-700 flex items-center justify-center font-bold text-[10px]">
-                        JP
-                    </span>
-                    <span>Jakson Pires</span>
-                </div>
-            
-                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600">
-                    <span class="w-6 h-6 rounded-full bg-slate-300 text-slate-700 flex items-center justify-center font-bold text-[10px]">
-                        RP
-                    </span>
-                    <span>Renata Pozza</span>
-                </div>
-            
-                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600">
-                    <span class="w-6 h-6 rounded-full bg-slate-300 text-slate-700 flex items-center justify-center font-bold text-[10px]">
-                        PP
-                    </span>
-                    <span>Paula Pellegrini</span>
-                </div>
-            
-                <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600">
-                    <span class="w-6 h-6 rounded-full bg-slate-300 text-slate-700 flex items-center justify-center font-bold text-[10px]">
-                        DP
-                    </span>
-                    <span>Dener Paludo</span>
-                </div>
-            </div>
             </div>
 
             <div class="bg-slate-100 px-6 py-3 border-t border-slate-200 text-right">
@@ -1702,12 +406,12 @@
 
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Nome da Equipe / Solicitante *</label>
-                    <input type="text" id="booking-team-name" required="" placeholder="Ex: Time Sudeste, Time Comercial, Região Sul" class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                    <input type="text" id="booking-team-name" required placeholder="Ex: Time Sudeste, Time Comercial, Região Sul" class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Responsável pelo Agendamento *</label>
-                    <input type="text" id="booking-owner" required="" placeholder="Ex: Rafael Carvalho / Poliana Machado" class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Responsável pela Alteração / Agendamento *</label>
+                    <input type="text" id="booking-owner" required placeholder="Ex: Rafael Carvalho / Poliana Machado" class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue">
                 </div>
 
                 <div>
@@ -1717,10 +421,10 @@
 
                 <div id="occupied-actions" class="hidden space-y-2 pt-2 border-t border-slate-100">
                     <p class="text-xs text-rose-600 font-semibold flex items-center gap-1">
-                        <i class="fa-solid fa-triangle-exclamation"></i> Este horário já consta como OCUPADO.
+                        <i class="fa-solid fa-triangle-exclamation"></i> Horário cadastrado como OCUPADO.
                     </p>
                     <button type="button" onclick="releaseSlot()" class="w-full py-2 bg-rose-100 hover:bg-rose-200 text-rose-700 font-semibold text-xs rounded-xl transition">
-                        <i class="fa-solid fa-trash-can mr-1"></i> Liberar Horário (Desmarcar)
+                        <i class="fa-solid fa-trash-can mr-1"></i> Liberar Horário (Desmarcar Reserva)
                     </button>
                 </div>
 
@@ -1729,16 +433,152 @@
                         Cancelar
                     </button>
                     <button type="submit" id="save-booking-btn" class="px-5 py-2.5 bg-brand-orange hover:bg-orange-600 text-white font-semibold text-xs rounded-xl shadow transition">
-                        Confirmar Reserva
+                        Confirmar e Salvar na Nuvem
                     </button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Script de Lógica e Interatividade -->
+    <!-- MODAL 3: Histórico de Alterações (Audit Log) -->
+    <div id="modal-audit" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-100 flex flex-col max-h-[90vh]">
+            <div class="bg-brand-blue text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-clock-rotate-left text-brand-orange text-xl"></i>
+                    <div>
+                        <h3 class="font-bold text-lg leading-snug">Histórico de Alterações</h3>
+                        <p class="text-xs text-slate-300">Registro de auditoria com quem alterou e quando</p>
+                    </div>
+                </div>
+                <button onclick="closeAuditModal()" class="text-slate-300 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-3" id="audit-log-container">
+                <!-- Conteúdo do Log Inserido por JS -->
+            </div>
+
+            <div class="bg-slate-100 px-6 py-3 border-t border-slate-200 text-right">
+                <button onclick="closeAuditModal()" class="px-5 py-2 bg-slate-700 text-white font-medium text-xs rounded-xl hover:bg-slate-800 transition">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK Modular -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Parâmetros Firebase do ambiente
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'salesforce-calendar-app';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "demo-api-key",
+            authDomain: "demo-project.firebaseapp.com",
+            projectId: "demo-project",
+            storageBucket: "demo-project.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcdef"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUser = null;
+
+        // Autenticação prévia obrigatória
+        async function initAuth() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    const userCredential = await signInWithCustomToken(auth, __initial_auth_token);
+                    currentUser = userCredential.user;
+                } else {
+                    const userCredential = await signInAnonymously(auth);
+                    currentUser = userCredential.user;
+                }
+                startRealtimeListeners();
+            } catch (err) {
+                console.error("Erro na autenticação Firebase:", err);
+                startRealtimeListeners(); // prossegue localmente caso indisponível
+            }
+        }
+
+        // Listener Firebase Firestore em Tempo Real
+        function startRealtimeListeners() {
+            // Documento de estado dos slots (Público)
+            const slotsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'calendar', 'master_schedule');
+            const auditCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'audit_logs');
+
+            // Escutar Alterações na Agenda
+            onSnapshot(slotsDocRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const remoteData = docSnap.data().slots;
+                    if (remoteData && remoteData.length > 0) {
+                        scheduleData = remoteData;
+                        renderGridSlots();
+                        renderCalendars();
+                        updateKPIs();
+                    }
+                } else {
+                    // Inicializar no banco se ainda não existir
+                    saveScheduleToFirebase(scheduleData, "Sistema Inicializado", "Diogo Paim Gonçalves", "Estado padrão do treinamento configurado.");
+                }
+            }, (error) => {
+                console.warn("Aviso de escuta em tempo real:", error);
+            });
+
+            // Escutar Histórico de Alterações
+            onSnapshot(auditCollectionRef, (querySnap) => {
+                auditLogs = [];
+                querySnap.forEach((doc) => {
+                    auditLogs.push({ id: doc.id, ...doc.data() });
+                });
+                // Ordenar por data mais recente
+                auditLogs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                renderAuditLogs();
+            }, (error) => {
+                console.warn("Aviso na leitura de auditoria:", error);
+            });
+        }
+
+        // Função para persistir alterações no Firestore
+        window.saveScheduleToFirebase = async function(updatedData, actionTitle, author, details) {
+            if (!currentUser) return;
+            try {
+                const slotsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'calendar', 'master_schedule');
+                await setDoc(slotsDocRef, { 
+                    slots: updatedData,
+                    lastUpdated: new Date().toISOString(),
+                    lastAuthor: author
+                });
+
+                // Adicionar Log de Auditoria
+                const logId = `log-${Date.now()}`;
+                const logDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'audit_logs', logId);
+                await setDoc(logDocRef, {
+                    timestamp: new Date().toISOString(),
+                    action: actionTitle,
+                    author: author,
+                    details: details,
+                    userId: currentUser.uid
+                });
+            } catch (err) {
+                console.error("Erro ao gravar no Firestore:", err);
+            }
+        };
+
+        // Iniciar Auth ao carregar script módulo
+        initAuth();
+    </script>
+
+    <!-- Script Principal de Aplicação -->
     <script>
-        // Dados dos Participantes do E-mail
+        // Participantes do e-mail
         const participantsPara = [
             "Rafael Henrique Andrade de Carvalho",
             "Patrick Casagrande",
@@ -1757,10 +597,19 @@
             "Dener Paludo"
         ];
 
-        // Definindo a Estrutura de Slots de Horários das 3 Janelas
-        // Data Ocupada pré-definida: Qui. 19/11/2026 09:00 - 09:30 (Time Sudeste - Diogo Paim Gonçalves)
+        // Estado do Histórico de Auditoria Local
+        let auditLogs = [
+            {
+                timestamp: "2026-11-09T14:46:00.000Z",
+                action: "Reserva Padrão Cadastrada",
+                author: "Diogo Paim Gonçalves",
+                details: "Qui. 19/11/2026 09:00 - 09:30 marcado para Time Sudeste conforme e-mail."
+            }
+        ];
+
+        // Slots de Horários
         let scheduleData = [
-            // --- JANELA 1: 17 a 19/11 (09h00 - 12h00) ---
+            // JANELA 1: 17 a 19/11 (09h00 - 12h00)
             { id: "17-11-0900", dateStr: "2026-11-17", dateDisplay: "Terça, 17/11/2026", timeDisplay: "09:00 - 09:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
             { id: "17-11-0930", dateStr: "2026-11-17", dateDisplay: "Terça, 17/11/2026", timeDisplay: "09:30 - 10:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
             { id: "17-11-1000", dateStr: "2026-11-17", dateDisplay: "Terça, 17/11/2026", timeDisplay: "10:00 - 10:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
@@ -1775,7 +624,7 @@
             { id: "18-11-1100", dateStr: "2026-11-18", dateDisplay: "Quarta, 18/11/2026", timeDisplay: "11:00 - 11:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
             { id: "18-11-1130", dateStr: "2026-11-18", dateDisplay: "Quarta, 18/11/2026", timeDisplay: "11:30 - 12:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
 
-            // Slot Marcado no enunciado do e-mail
+            // Slot Marcado no e-mail
             { id: "19-11-0900", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "09:00 - 09:30", window: 1, isOccupied: true, team: "Time Sudeste", owner: "Diogo Paim Gonçalves", notes: "Esta data já foi ocupada pelo time sudeste" },
             { id: "19-11-0930", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "09:30 - 10:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
             { id: "19-11-1000", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "10:00 - 10:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
@@ -1783,14 +632,14 @@
             { id: "19-11-1100", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "11:00 - 11:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
             { id: "19-11-1130", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "11:30 - 12:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
 
-            // --- JANELA 2: 24 a 26/11 (09h00 – 12h00) & (14h00 – 16h00) ---
+            // JANELA 2: 24 a 26/11
             ...generateWindowSlots(["2026-11-24", "2026-11-25", "2026-11-26"], [
                 {day: "Terça", dates: "24/11/2026"},
                 {day: "Quarta", dates: "25/11/2026"},
                 {day: "Quinta", dates: "26/11/2026"}
             ], 2),
 
-            // --- JANELA 3: 02 a 04/12 (09h00 – 12h00) & (14h00 – 16h00) ---
+            // JANELA 3: 02 a 04/12
             ...generateWindowSlots(["2026-12-02", "2026-12-03", "2026-12-04"], [
                 {day: "Quarta", dates: "02/12/2026"},
                 {day: "Quinta", dates: "03/12/2026"},
@@ -1798,7 +647,6 @@
             ], 3)
         ];
 
-        // Função utilitária para gerar os slots das janelas 2 e 3
         function generateWindowSlots(dateStrs, dateDisplays, windowNum) {
             let slots = [];
             const timeRanges = [
@@ -1829,15 +677,14 @@
 
         let currentFilter = 'all';
 
-        // Inicialização da Página
         window.onload = function() {
             renderParticipants();
             renderGridSlots();
             renderCalendars();
             updateKPIs();
-        }
+            renderAuditLogs();
+        };
 
-        // Renderizar Lista de Participantes no Modal
         function renderParticipants() {
             const containerPara = document.getElementById('list-para');
             const containerCc = document.getElementById('list-cc');
@@ -1863,21 +710,14 @@
             document.getElementById('count-participants').innerText = participantsPara.length + participantsCc.length;
         }
 
-        // Renderizar Grade de Horários por Janelas
         function renderGridSlots() {
-            const w1Grid = document.getElementById('window-1-grid');
-            const w2Grid = document.getElementById('window-2-grid');
-            const w3Grid = document.getElementById('window-3-grid');
-
-            w1Grid.innerHTML = buildWindowHTML(1);
-            w2Grid.innerHTML = buildWindowHTML(2);
-            w3Grid.innerHTML = buildWindowHTML(3);
+            document.getElementById('window-1-grid').innerHTML = buildWindowHTML(1);
+            document.getElementById('window-2-grid').innerHTML = buildWindowHTML(2);
+            document.getElementById('window-3-grid').innerHTML = buildWindowHTML(3);
         }
 
         function buildWindowHTML(windowNum) {
             const windowSlots = scheduleData.filter(s => s.window === windowNum);
-            
-            // Agrupar por data
             const dates = [...new Set(windowSlots.map(s => s.dateDisplay))];
             
             return dates.map(dDisplay => {
@@ -1896,21 +736,20 @@
 
                         <div class="space-y-2 max-h-80 overflow-y-auto custom-scrollbar pr-1">
                             ${slotsForDay.map(slot => {
-                                // Aplicação do Filtro
                                 if (currentFilter === 'free' && slot.isOccupied) return '';
                                 if (currentFilter === 'occupied' && !slot.isOccupied) return '';
 
                                 if (slot.isOccupied) {
                                     return `
-                                        <div onclick="openBookingModal('${slot.id}')" class="p-3 rounded-xl border border-rose-200 bg-rose-50/80 hover:bg-rose-100 transition cursor-pointer flex items-center justify-between group">
+                                        <div onclick="openBookingModal('${slot.id}')" class="p-3 rounded-xl border border-rose-200 bg-rose-50/80 hover:bg-rose-100 transition cursor-pointer flex items-center justify-between group shadow-sm">
                                             <div>
                                                 <div class="flex items-center gap-1.5 text-xs font-bold text-rose-700">
                                                     <i class="fa-solid fa-lock text-rose-500"></i> ${slot.timeDisplay}
                                                 </div>
                                                 <p class="text-xs font-semibold text-slate-800 mt-1">${slot.team}</p>
-                                                <p class="text-[10px] text-slate-500">${slot.owner}</p>
+                                                <p class="text-[10px] text-slate-500"><i class="fa-regular fa-user mr-1"></i>${slot.owner}</p>
                                             </div>
-                                            <span class="text-[10px] bg-rose-200 text-rose-800 font-bold px-2 py-1 rounded-md group-hover:bg-rose-300">
+                                            <span class="text-[10px] bg-rose-200 text-rose-800 font-bold px-2 py-1 rounded-md group-hover:bg-rose-300 shrink-0">
                                                 Ocupado
                                             </span>
                                         </div>
@@ -1935,13 +774,9 @@
             }).join('');
         }
 
-        // Renderização dos Calendários Mensais
         function renderCalendars() {
-            // Novembro 2026 (Começa em Domingo - 0)
             const novGrid = document.getElementById('cal-nov-grid');
             let novHtml = '';
-            
-            // Espaços em branco para início de Novembro (Dom:1/Nov/2026) -> Dom=0
             for(let day=1; day<=30; day++) {
                 const dateStr = `2026-11-${day < 10 ? '0'+day : day}`;
                 const slotsOnDay = scheduleData.filter(s => s.dateStr === dateStr);
@@ -1960,7 +795,7 @@
                         <span class="font-bold text-xs">${day}</span>
                         ${hasSlots ? `
                             <div class="text-[9px]">
-                                ${hasOccupied ? `<span class="bg-rose-200 text-rose-800 font-bold px-1 py-0.5 rounded block text-center">Sudeste/Ocup</span>` : `<span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">${slotsOnDay.length} vagas</span>`}
+                                ${hasOccupied ? `<span class="bg-rose-200 text-rose-800 font-bold px-1 py-0.5 rounded block text-center">Ocupado</span>` : `<span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">${slotsOnDay.length} vagas</span>`}
                             </div>
                         ` : ''}
                     </div>
@@ -1968,12 +803,8 @@
             }
             novGrid.innerHTML = novHtml;
 
-            // Dezembro 2026
             const decGrid = document.getElementById('cal-dec-grid');
-            let decHtml = '';
-            
-            // Offset Terça-feira (1/Dez/2026 é Terça -> 2 células vazias)
-            decHtml += '<div class="p-2"></div><div class="p-2"></div>';
+            let decHtml = '<div class="p-2"></div><div class="p-2"></div>';
 
             for(let day=1; day<=31; day++) {
                 const dateStr = `2026-12-${day < 10 ? '0'+day : day}`;
@@ -2002,13 +833,11 @@
             decGrid.innerHTML = decHtml;
         }
 
-        // Atualizar KPIs
         function updateKPIs() {
             const totalSlots = scheduleData.length;
             const occupiedSlots = scheduleData.filter(s => s.isOccupied).length;
             const freeSlots = totalSlots - occupiedSlots;
 
-            // Cada slot = 30 min = 0.5 hora
             const totalHours = (totalSlots * 0.5).toFixed(1);
             const freeHours = (freeSlots * 0.5).toFixed(1);
 
@@ -2022,7 +851,40 @@
             document.getElementById('kpi-bar-occupancy').style.width = `${occupancyRate}%`;
         }
 
-        // Alternar Visualização (Slots vs Calendário)
+        // Renderizar Audit Logs
+        function renderAuditLogs() {
+            const container = document.getElementById('audit-log-container');
+            document.getElementById('count-logs').innerText = auditLogs.length;
+
+            if (auditLogs.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">Nenhuma alteração registrada ainda.</p>`;
+                return;
+            }
+
+            const latestLog = auditLogs[0];
+            const formattedDate = new Date(latestLog.timestamp).toLocaleString('pt-BR');
+
+            document.getElementById('last-update-info').innerHTML = `
+                <strong>${latestLog.author}</strong> — <em>${latestLog.action}</em> <span class="text-slate-500 font-normal">(${formattedDate})</span>
+            `;
+
+            container.innerHTML = auditLogs.map(log => {
+                const dateFormatted = new Date(log.timestamp).toLocaleString('pt-BR');
+                return `
+                    <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col gap-1">
+                        <div class="flex items-center justify-between text-slate-500">
+                            <span class="font-bold text-brand-blue flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-dot text-[8px] text-brand-orange"></i> ${log.action}
+                            </span>
+                            <span class="text-[11px]"><i class="fa-regular fa-clock mr-1"></i>${dateFormatted}</span>
+                        </div>
+                        <p class="text-slate-800 font-semibold">Alterado por: <span class="text-brand-orange">${log.author}</span></p>
+                        <p class="text-slate-600">${log.details}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
         function switchView(view) {
             const slotsContainer = document.getElementById('slots-view-container');
             const calendarContainer = document.getElementById('calendar-view-container');
@@ -2032,25 +894,20 @@
             if(view === 'slots') {
                 slotsContainer.classList.remove('hidden');
                 calendarContainer.classList.add('hidden');
-                
                 slotsBtn.className = "flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg transition-all bg-white text-brand-blue shadow";
                 calBtn.className = "flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all";
             } else {
                 slotsContainer.classList.add('hidden');
                 calendarContainer.classList.remove('hidden');
-
                 calBtn.className = "flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg transition-all bg-white text-brand-blue shadow";
                 slotsBtn.className = "flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all";
             }
         }
 
-        // Filtro por dia ao clicar no Calendário
         function filterCalendarDay(dateStr) {
             switchView('slots');
-            // Role até o elemento se necessário ou notifique
         }
 
-        // Filtros de Status (Todos, Livres, Ocupados)
         function filterSlots(type) {
             currentFilter = type;
             document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -2063,13 +920,11 @@
             renderGridSlots();
         }
 
-        // Modal de Agendamento
         function openBookingModal(slotId = null) {
             let slot = null;
             if (slotId) {
                 slot = scheduleData.find(s => s.id === slotId);
             } else {
-                // Pegar o primeiro slot livre
                 slot = scheduleData.find(s => !s.isOccupied) || scheduleData[0];
             }
 
@@ -2082,19 +937,19 @@
             const submitBtn = document.getElementById('save-booking-btn');
 
             if(slot.isOccupied) {
-                document.getElementById('booking-modal-title').innerText = "Detalhes do Agendamento";
+                document.getElementById('booking-modal-title').innerText = "Editar / Liberar Agendamento";
                 document.getElementById('booking-team-name').value = slot.team;
                 document.getElementById('booking-owner').value = slot.owner;
                 document.getElementById('booking-notes').value = slot.notes;
                 occupiedActions.classList.remove('hidden');
-                submitBtn.innerText = "Atualizar Reserva";
+                submitBtn.innerText = "Atualizar e Gravar";
             } else {
-                document.getElementById('booking-modal-title').innerText = "Agendar Treinamento";
+                document.getElementById('booking-modal-title').innerText = "Agendar Horário do Treinamento";
                 document.getElementById('booking-team-name').value = "";
                 document.getElementById('booking-owner').value = "";
                 document.getElementById('booking-notes').value = "";
                 occupiedActions.classList.add('hidden');
-                submitBtn.innerText = "Confirmar Reserva";
+                submitBtn.innerText = "Confirmar Reserva na Nuvem";
             }
 
             document.getElementById('modal-booking').classList.remove('hidden');
@@ -2113,10 +968,19 @@
 
             const slotIndex = scheduleData.findIndex(s => s.id === slotId);
             if(slotIndex !== -1) {
+                const isNew = !scheduleData[slotIndex].isOccupied;
                 scheduleData[slotIndex].isOccupied = true;
                 scheduleData[slotIndex].team = team;
                 scheduleData[slotIndex].owner = owner;
                 scheduleData[slotIndex].notes = notes;
+
+                const actionTitle = isNew ? "Nova Reserva Efetuada" : "Reserva Alterada";
+                const details = `${team} reservou para ${scheduleData[slotIndex].dateDisplay} (${scheduleData[slotIndex].timeDisplay}). Obs: ${notes || 'Nenhuma'}`;
+
+                // Salvar e sincronizar via Firebase Realtime
+                if (window.saveScheduleToFirebase) {
+                    window.saveScheduleToFirebase(scheduleData, actionTitle, `${owner} (${team})`, details);
+                }
 
                 renderGridSlots();
                 renderCalendars();
@@ -2127,12 +991,23 @@
 
         function releaseSlot() {
             const slotId = document.getElementById('booking-slot-id').value;
+            const owner = document.getElementById('booking-owner').value || "Usuário";
+            const team = document.getElementById('booking-team-name').value || "Equipe";
             const slotIndex = scheduleData.findIndex(s => s.id === slotId);
+            
             if(slotIndex !== -1) {
+                const targetSlot = scheduleData[slotIndex];
                 scheduleData[slotIndex].isOccupied = false;
                 scheduleData[slotIndex].team = "";
                 scheduleData[slotIndex].owner = "";
                 scheduleData[slotIndex].notes = "";
+
+                const actionTitle = "Reserva Cancelada / Horário Liberado";
+                const details = `Horário das ${targetSlot.timeDisplay} em ${targetSlot.dateDisplay} foi liberado por ${owner}.`;
+
+                if (window.saveScheduleToFirebase) {
+                    window.saveScheduleToFirebase(scheduleData, actionTitle, `${owner} (${team})`, details);
+                }
 
                 renderGridSlots();
                 renderCalendars();
@@ -2141,7 +1016,6 @@
             }
         }
 
-        // Modais de Participantes
         function openParticipantsModal() {
             document.getElementById('modal-participants').classList.remove('hidden');
         }
@@ -2149,6 +1023,14 @@
         function closeParticipantsModal() {
             document.getElementById('modal-participants').classList.add('hidden');
         }
-    </script>
 
-</body></html>
+        function openAuditModal() {
+            document.getElementById('modal-audit').classList.remove('hidden');
+        }
+
+        function closeAuditModal() {
+            document.getElementById('modal-audit').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
