@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Font Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- SDKs do Firebase (Compat) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -37,7 +42,6 @@
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         .tab-active { border-bottom: 3px solid #F8820A; color: #06418a; font-weight: 600; }
-        .glass-panel { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
     </style>
 </head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col">
@@ -47,7 +51,6 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-24">
                 <div class="flex items-center space-x-6">
-                    <!-- Logo Oficial Bertolini -->
                     <div class="flex items-center justify-center py-2 px-1">
                         <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-claro.svg" 
                              alt="Logo Bertolini Armazenagem" 
@@ -61,9 +64,6 @@
                         <div class="flex items-center gap-2">
                             <span class="bg-brand-orange/20 text-orange-200 text-xs px-2.5 py-0.5 rounded-full font-medium uppercase tracking-wider border border-brand-orange/40">Treinamento Oficial</span>
                             <span class="text-xs text-slate-300 hidden md:inline"><i class="fa-regular fa-clock mr-1"></i>Novembro & Dezembro 2026</span>
-                            <span id="sync-status" class="bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 text-[11px] px-2 py-0.5 rounded-full flex items-center gap-1.5 font-medium">
-                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Em Tempo Real
-                            </span>
                         </div>
                         <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white leading-tight mt-0.5">
                             1º Treinamento - SALES FORCE <span class="text-slate-300 font-normal text-sm hidden lg:inline">(preenchimento de campos específicos)</span>
@@ -91,56 +91,45 @@
     <!-- Conteúdo Principal -->
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
 
-        <!-- Banner Informativo da Origem + Barra de Última Alteração -->
+        <!-- Barra de Status e Última Alteração (Audit Log) -->
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 shadow-sm">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center text-lg shadow-sm">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-amber-900 uppercase tracking-wider">Histórico de Alterações (Última Modificação)</h4>
+                    <p class="text-xs font-medium text-amber-700" id="last-update-text">Carregando histórico em tempo real...</p>
+                </div>
+            </div>
+            <button onclick="openAuditModal()" class="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold rounded-lg transition shadow">
+                <i class="fa-solid fa-list-ul mr-1"></i> Ver Log Completo
+            </button>
+        </div>
+
+        <!-- Banner Informativo da Origem / Contexto -->
         <div class="bg-gradient-to-r from-brand-blue to-blue-900 text-white rounded-2xl p-5 shadow-lg relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <div class="relative z-10 max-w-2xl">
+            <div class="relative z-10 max-w-3xl">
                 <div class="flex items-center gap-2 text-brand-orange font-semibold text-sm mb-1">
-                    <i class="fa-solid fa-cloud-arrow-up"></i> Sincronização e Reserva Colaborativa
+                    <i class="fa-solid fa-envelope-open-text"></i> Alinhamento da Agenda por E-mail (PAIM.IA.PROSPECT)
                 </div>
                 <p class="text-sm text-slate-200 leading-relaxed">
-                    Janelas de disponibilidade definidas por <strong>Diogo Paim Gonçalves</strong>. Qualquer alteração ou agendamento feito por qualquer participante é salvo e sincronizado em tempo real.
+                    Janelas de disponibilidade definidas por <strong>Diogo Paim Gonçalves</strong> para realização do treinamento de Sales Force. Utilize esta ferramenta para alocar sua equipe nos horários livres com salvamento instantâneo na nuvem.
                 </p>
             </div>
-            
-            <div class="flex flex-col sm:flex-row gap-2 relative z-10 w-full md:w-auto">
-                <!-- Botão Ver Participantes -->
-                <button onclick="openParticipantsModal()" class="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold rounded-xl text-xs transition-all shadow flex items-center justify-center gap-2">
+            <div class="flex gap-2 flex-wrap relative z-10 w-full md:w-auto">
+                <button onclick="openParticipantsModal()" class="w-full sm:w-auto px-4 py-2.5 bg-white text-brand-blue hover:bg-slate-100 font-semibold rounded-xl text-sm transition-all shadow flex items-center justify-center gap-2">
                     <i class="fa-solid fa-users text-brand-orange"></i>
-                    Convocados (<span id="count-participants">12</span>)
-                </button>
-
-                <!-- Botão Ver Histórico -->
-                <button onclick="openAuditModal()" class="px-4 py-2.5 bg-brand-orange hover:bg-orange-600 text-white font-semibold rounded-xl text-xs transition-all shadow flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                    Histórico de Alterações (<span id="count-logs">0</span>)
+                    Ver Lista de Convocados (<span id="count-participants">12</span>)
                 </button>
             </div>
-
-            <!-- Elemento Decorativo no fundo -->
             <div class="absolute -right-10 -bottom-10 text-white/5 pointer-events-none text-9xl">
                 <i class="fa-solid fa-calendar-check"></i>
             </div>
         </div>
 
-        <!-- Banner com a informação de Última Alteração -->
-        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 px-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-700 flex items-center justify-center shrink-0">
-                    <i class="fa-solid fa-user-pen"></i>
-                </div>
-                <div class="text-xs">
-                    <span class="font-bold text-amber-900 uppercase tracking-wider block text-[10px]">Última Modificação Registrada</span>
-                    <span id="last-update-info" class="text-amber-800 font-medium">Carregando informações do histórico...</span>
-                </div>
-            </div>
-            <button onclick="openAuditModal()" class="text-xs font-semibold text-amber-800 hover:text-amber-900 underline shrink-0">
-                Ver Todo o Histórico
-            </button>
-        </div>
-
         <!-- Cards de KPI -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <!-- Card 1: Horas Totais Janela -->
             <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex items-center justify-between hover:shadow-md transition">
                 <div>
                     <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Janela de Horários</p>
@@ -152,37 +141,34 @@
                 </div>
             </div>
 
-            <!-- Card 2: Horas Livres -->
             <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex items-center justify-between hover:shadow-md transition">
                 <div>
                     <p class="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Slots Livres</p>
-                    <h3 class="text-2xl font-bold text-emerald-600 mt-1" id="kpi-free-slots">89 Slots</h3>
-                    <p class="text-xs text-slate-500 mt-1"><span id="kpi-free-hours">44h 30m</span> disponíveis</p>
+                    <h3 class="text-2xl font-bold text-emerald-600 mt-1" id="kpi-free-slots">--</h3>
+                    <p class="text-xs text-slate-500 mt-1"><span id="kpi-free-hours">--</span> disponíveis</p>
                 </div>
                 <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl">
                     <i class="fa-solid fa-circle-check"></i>
                 </div>
             </div>
 
-            <!-- Card 3: Reservado / Ocupado -->
             <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex items-center justify-between hover:shadow-md transition">
                 <div>
                     <p class="text-xs font-semibold text-rose-600 uppercase tracking-wider">Reservado / Ocupado</p>
-                    <h3 class="text-2xl font-bold text-rose-600 mt-1" id="kpi-busy-slots">1 Slot</h3>
-                    <p class="text-xs text-slate-500 mt-1">Sincronizado via Firestore</p>
+                    <h3 class="text-2xl font-bold text-rose-600 mt-1" id="kpi-busy-slots">--</h3>
+                    <p class="text-xs text-slate-500 mt-1">Sincronizado na nuvem</p>
                 </div>
                 <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl">
                     <i class="fa-solid fa-user-lock"></i>
                 </div>
             </div>
 
-            <!-- Card 4: Taxa de Ocupação -->
             <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex items-center justify-between hover:shadow-md transition">
                 <div>
                     <p class="text-xs font-semibold text-brand-orange uppercase tracking-wider">Taxa de Ocupação</p>
-                    <h3 class="text-2xl font-bold text-brand-blue mt-1" id="kpi-occupancy-rate">1.1%</h3>
+                    <h3 class="text-2xl font-bold text-brand-blue mt-1" id="kpi-occupancy-rate">--</h3>
                     <div class="w-full bg-slate-100 rounded-full h-2 mt-2 w-28 overflow-hidden">
-                        <div id="kpi-bar-occupancy" class="bg-brand-orange h-2 rounded-full" style="width: 1.1%"></div>
+                        <div id="kpi-bar-occupancy" class="bg-brand-orange h-2 rounded-full" style="width: 0%"></div>
                     </div>
                 </div>
                 <div class="w-12 h-12 rounded-xl bg-orange-50 text-brand-orange flex items-center justify-center text-xl">
@@ -193,8 +179,6 @@
 
         <!-- Controles de Filtro e Modos de Visualização -->
         <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
-            
-            <!-- Abas de Alternância -->
             <div class="flex items-center space-x-2 bg-slate-100 p-1 rounded-xl w-full md:w-auto">
                 <button id="view-slots-btn" onclick="switchView('slots')" class="flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg transition-all bg-white text-brand-blue shadow">
                     <i class="fa-solid fa-list-check mr-2"></i> Grade de Horários (Slots)
@@ -204,7 +188,6 @@
                 </button>
             </div>
 
-            <!-- Filtros de Status -->
             <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
                 <span class="text-xs font-medium text-slate-500 mr-1 hidden lg:inline"><i class="fa-solid fa-filter mr-1"></i>Filtro:</span>
                 <button onclick="filterSlots('all')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-brand-blue text-white transition" data-filter="all">Todos</button>
@@ -215,17 +198,14 @@
                     <span class="w-2 h-2 rounded-full bg-rose-500 inline-block mr-1"></span> Reservados / Ocupados
                 </button>
                 
-                <!-- Botão Novo Agendamento -->
                 <button onclick="openBookingModal()" class="ml-auto px-4 py-1.5 bg-brand-orange hover:bg-orange-600 text-white font-medium text-xs rounded-lg shadow transition flex items-center gap-1.5">
                     <i class="fa-solid fa-plus"></i> Agendar Treinamento
                 </button>
             </div>
         </div>
 
-        <!-- PAINEL 1: Visualização por Slots de Horário / Grade (Padrão) -->
+        <!-- PAINEL 1: Grade de Horários -->
         <div id="slots-view-container" class="space-y-6">
-            
-            <!-- Seção Janela 1 -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                 <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div class="flex items-center gap-3">
@@ -235,12 +215,9 @@
                     </div>
                     <span class="text-xs text-slate-500 font-medium">Slots de 30 min | 3 Dias disponíveis</span>
                 </div>
-                <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6" id="window-1-grid">
-                    <!-- Gerado Dinamicamente -->
-                </div>
+                <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6" id="window-1-grid"></div>
             </div>
 
-            <!-- Seção Janela 2 -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                 <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div class="flex items-center gap-3">
@@ -250,12 +227,9 @@
                     </div>
                     <span class="text-xs text-slate-500 font-medium">Slots de 30 min | 3 Dias disponíveis</span>
                 </div>
-                <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6" id="window-2-grid">
-                    <!-- Gerado Dinamicamente -->
-                </div>
+                <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6" id="window-2-grid"></div>
             </div>
 
-            <!-- Seção Janela 3 -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                 <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div class="flex items-center gap-3">
@@ -265,18 +239,13 @@
                     </div>
                     <span class="text-xs text-slate-500 font-medium">Slots de 30 min | 3 Dias disponíveis</span>
                 </div>
-                <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6" id="window-3-grid">
-                    <!-- Gerado Dinamicamente -->
-                </div>
+                <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6" id="window-3-grid"></div>
             </div>
-
         </div>
 
-        <!-- PAINEL 2: Visualização de Calendário Mensal -->
+        <!-- PAINEL 2: Calendário Mensal -->
         <div id="calendar-view-container" class="hidden space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                
-                <!-- Calendário Novembro 2026 -->
                 <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-bold text-brand-blue flex items-center gap-2">
@@ -284,17 +253,12 @@
                         </h3>
                         <span class="text-xs bg-blue-50 text-brand-blue font-semibold px-2.5 py-1 rounded-full">6 Dias de Treinamento</span>
                     </div>
-                    
                     <div class="grid grid-cols-7 gap-1 text-center font-semibold text-xs text-slate-400 mb-2">
                         <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
                     </div>
-                    
-                    <div class="grid grid-cols-7 gap-2 text-sm" id="cal-nov-grid">
-                        <!-- Gerado por JS -->
-                    </div>
+                    <div class="grid grid-cols-7 gap-2 text-sm" id="cal-nov-grid"></div>
                 </div>
 
-                <!-- Calendário Dezembro 2026 -->
                 <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-bold text-brand-blue flex items-center gap-2">
@@ -302,28 +266,10 @@
                         </h3>
                         <span class="text-xs bg-blue-50 text-brand-blue font-semibold px-2.5 py-1 rounded-full">3 Dias de Treinamento</span>
                     </div>
-                    
                     <div class="grid grid-cols-7 gap-1 text-center font-semibold text-xs text-slate-400 mb-2">
                         <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
                     </div>
-                    
-                    <div class="grid grid-cols-7 gap-2 text-sm" id="cal-dec-grid">
-                        <!-- Gerado por JS -->
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Legenda do Calendário -->
-            <div class="bg-white p-4 rounded-xl border border-slate-200 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-600">
-                <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-emerald-500"></span> Dia com Horários Disponíveis
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-rose-500"></span> Possui Agendamento / Parcialmente Ocupado
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-slate-200"></span> Sem Janela Prevista
+                    <div class="grid grid-cols-7 gap-2 text-sm" id="cal-dec-grid"></div>
                 </div>
             </div>
         </div>
@@ -333,14 +279,14 @@
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 mt-auto py-4 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
-            <p>1º Treinamento Salesforce &copy; 2026 - Gestão de Ocupação por Equipes</p>
+            <p>1º Treinamento Salesforce &copy; 2026 - PAIM.IA.PROSPECT (Sincronizado na Nuvem)</p>
             <p class="flex items-center gap-2">
-                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span> Sincronizado via Firebase Realtime
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Firebase Online
             </p>
         </div>
     </footer>
 
-    <!-- MODAL 1: Lista de Participantes convocados no E-mail -->
+    <!-- MODAL: Participantes -->
     <div id="modal-participants" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-100 flex flex-col max-h-[90vh]">
             <div class="bg-brand-blue text-white px-6 py-4 flex items-center justify-between">
@@ -348,39 +294,44 @@
                     <i class="fa-solid fa-users text-brand-orange text-xl"></i>
                     <div>
                         <h3 class="font-bold text-lg leading-snug">Participantes do E-mail</h3>
-                        <p class="text-xs text-slate-300">Convocados e cópias do e-mail do treinamento</p>
+                        <p class="text-xs text-slate-300">Convocados e cópias do treinamento</p>
                     </div>
                 </div>
                 <button onclick="closeParticipantsModal()" class="text-slate-300 hover:text-white text-xl">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            
             <div class="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-4">
-                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-600 mb-2">
-                    <strong class="text-brand-blue">Instrutor:</strong> Diogo Paim Gonçalves (diogo.paim@empresa.com.br)
-                </div>
-
                 <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Destinatários Principais (Para)</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="list-para">
-                    <!-- Dinâmico -->
-                </div>
-
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="list-para"></div>
                 <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-4">Em Cópia (Cc)</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="list-cc">
-                    <!-- Dinâmico -->
-                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="list-cc"></div>
             </div>
-
             <div class="bg-slate-100 px-6 py-3 border-t border-slate-200 text-right">
-                <button onclick="closeParticipantsModal()" class="px-5 py-2 bg-slate-700 text-white font-medium text-xs rounded-xl hover:bg-slate-800 transition">
-                    Fechar
-                </button>
+                <button onclick="closeParticipantsModal()" class="px-5 py-2 bg-slate-700 text-white font-medium text-xs rounded-xl">Fechar</button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 2: Agendar Slot / Detalhes de Agendamento -->
+    <!-- MODAL: Log Completo de Auditoria -->
+    <div id="modal-audit" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-xl w-full overflow-hidden shadow-2xl border border-slate-100 flex flex-col max-h-[90vh]">
+            <div class="bg-brand-blue text-white px-6 py-4 flex items-center justify-between">
+                <h3 class="font-bold text-base flex items-center gap-2">
+                    <i class="fa-solid fa-clock-rotate-left text-brand-orange"></i> Histórico de Alterações na Nuvem
+                </h3>
+                <button onclick="closeAuditModal()" class="text-slate-300 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-3" id="audit-logs-list">
+                <p class="text-xs text-slate-500">Carregando logs...</p>
+            </div>
+            <div class="bg-slate-100 px-6 py-3 border-t border-slate-200 text-right">
+                <button onclick="closeAuditModal()" class="px-5 py-2 bg-slate-700 text-white font-medium text-xs rounded-xl">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Agendamento -->
     <div id="modal-booking" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-100">
             <div class="bg-brand-blue text-white px-6 py-4 flex items-center justify-between">
@@ -388,9 +339,7 @@
                     <i class="fa-regular fa-calendar-plus text-brand-orange"></i>
                     <span id="booking-modal-title">Agendar Horário</span>
                 </h3>
-                <button onclick="closeBookingModal()" class="text-slate-300 hover:text-white text-xl">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                <button onclick="closeBookingModal()" class="text-slate-300 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
             <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="p-6 space-y-4">
@@ -399,217 +348,68 @@
                 <div class="bg-blue-50 border border-blue-100 p-3 rounded-xl text-xs text-brand-blue flex items-center gap-3">
                     <i class="fa-solid fa-clock text-lg text-brand-orange"></i>
                     <div>
-                        <p class="font-bold text-slate-800" id="modal-slot-datetime">19/11/2026 às 09:00 - 09:30</p>
+                        <p class="font-bold text-slate-800" id="modal-slot-datetime">--</p>
                         <p class="text-slate-500">Duração: 30 minutos</p>
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">Nome da Equipe / Solicitante *</label>
-                    <input type="text" id="booking-team-name" required placeholder="Ex: Time Sudeste, Time Comercial, Região Sul" class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                    <input type="text" id="booking-team-name" required placeholder="Ex: Time Sudeste, Time Comercial" class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Responsável pela Alteração / Agendamento *</label>
-                    <input type="text" id="booking-owner" required placeholder="Ex: Rafael Carvalho / Poliana Machado" class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Responsável pelo Agendamento *</label>
+                    <input type="text" id="booking-owner" required placeholder="Ex: Ronaldo Antunes / Rafael Carvalho" class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Observações ou Pauta Específica</label>
-                    <textarea id="booking-notes" rows="2" placeholder="Dúvidas específicas sobre preenchimento de campos..." class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue"></textarea>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Observações ou Pauta</label>
+                    <textarea id="booking-notes" rows="2" placeholder="Dúvidas específicas..." class="w-full text-xs p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue"></textarea>
                 </div>
 
                 <div id="occupied-actions" class="hidden space-y-2 pt-2 border-t border-slate-100">
-                    <p class="text-xs text-rose-600 font-semibold flex items-center gap-1">
-                        <i class="fa-solid fa-triangle-exclamation"></i> Horário cadastrado como OCUPADO.
-                    </p>
                     <button type="button" onclick="releaseSlot()" class="w-full py-2 bg-rose-100 hover:bg-rose-200 text-rose-700 font-semibold text-xs rounded-xl transition">
-                        <i class="fa-solid fa-trash-can mr-1"></i> Liberar Horário (Desmarcar Reserva)
+                        <i class="fa-solid fa-trash-can mr-1"></i> Liberar Horário (Desmarcar)
                     </button>
                 </div>
 
                 <div class="flex justify-end gap-2 pt-2">
-                    <button type="button" onclick="closeBookingModal()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-xs rounded-xl transition">
-                        Cancelar
-                    </button>
-                    <button type="submit" id="save-booking-btn" class="px-5 py-2.5 bg-brand-orange hover:bg-orange-600 text-white font-semibold text-xs rounded-xl shadow transition">
-                        Confirmar e Salvar na Nuvem
-                    </button>
+                    <button type="button" onclick="closeBookingModal()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-xs rounded-xl">Cancelar</button>
+                    <button type="submit" id="save-booking-btn" class="px-5 py-2.5 bg-brand-orange hover:bg-orange-600 text-white font-semibold text-xs rounded-xl shadow">Confirmar Reserva</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- MODAL 3: Histórico de Alterações (Audit Log) -->
-    <div id="modal-audit" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-100 flex flex-col max-h-[90vh]">
-            <div class="bg-brand-blue text-white px-6 py-4 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-clock-rotate-left text-brand-orange text-xl"></i>
-                    <div>
-                        <h3 class="font-bold text-lg leading-snug">Histórico de Alterações</h3>
-                        <p class="text-xs text-slate-300">Registro de auditoria com quem alterou e quando</p>
-                    </div>
-                </div>
-                <button onclick="closeAuditModal()" class="text-slate-300 hover:text-white text-xl">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            
-            <div class="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-3" id="audit-log-container">
-                <!-- Conteúdo do Log Inserido por JS -->
-            </div>
-
-            <div class="bg-slate-100 px-6 py-3 border-t border-slate-200 text-right">
-                <button onclick="closeAuditModal()" class="px-5 py-2 bg-slate-700 text-white font-medium text-xs rounded-xl hover:bg-slate-800 transition">
-                    Fechar
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Firebase SDK Modular -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Parâmetros Firebase do ambiente
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'salesforce-calendar-app';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-            apiKey: "demo-api-key",
-            authDomain: "demo-project.firebaseapp.com",
-            projectId: "demo-project",
-            storageBucket: "demo-project.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123456789:web:abcdef"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        let currentUser = null;
-
-        // Autenticação prévia obrigatória
-        async function initAuth() {
-            try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    const userCredential = await signInWithCustomToken(auth, __initial_auth_token);
-                    currentUser = userCredential.user;
-                } else {
-                    const userCredential = await signInAnonymously(auth);
-                    currentUser = userCredential.user;
-                }
-                startRealtimeListeners();
-            } catch (err) {
-                console.error("Erro na autenticação Firebase:", err);
-                startRealtimeListeners(); // prossegue localmente caso indisponível
-            }
-        }
-
-        // Listener Firebase Firestore em Tempo Real
-        function startRealtimeListeners() {
-            // Documento de estado dos slots (Público)
-            const slotsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'calendar', 'master_schedule');
-            const auditCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'audit_logs');
-
-            // Escutar Alterações na Agenda
-            onSnapshot(slotsDocRef, (docSnap) => {
-                if (docSnap.exists()) {
-                    const remoteData = docSnap.data().slots;
-                    if (remoteData && remoteData.length > 0) {
-                        scheduleData = remoteData;
-                        renderGridSlots();
-                        renderCalendars();
-                        updateKPIs();
-                    }
-                } else {
-                    // Inicializar no banco se ainda não existir
-                    saveScheduleToFirebase(scheduleData, "Sistema Inicializado", "Diogo Paim Gonçalves", "Estado padrão do treinamento configurado.");
-                }
-            }, (error) => {
-                console.warn("Aviso de escuta em tempo real:", error);
-            });
-
-            // Escutar Histórico de Alterações
-            onSnapshot(auditCollectionRef, (querySnap) => {
-                auditLogs = [];
-                querySnap.forEach((doc) => {
-                    auditLogs.push({ id: doc.id, ...doc.data() });
-                });
-                // Ordenar por data mais recente
-                auditLogs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-                renderAuditLogs();
-            }, (error) => {
-                console.warn("Aviso na leitura de auditoria:", error);
-            });
-        }
-
-        // Função para persistir alterações no Firestore
-        window.saveScheduleToFirebase = async function(updatedData, actionTitle, author, details) {
-            if (!currentUser) return;
-            try {
-                const slotsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'calendar', 'master_schedule');
-                await setDoc(slotsDocRef, { 
-                    slots: updatedData,
-                    lastUpdated: new Date().toISOString(),
-                    lastAuthor: author
-                });
-
-                // Adicionar Log de Auditoria
-                const logId = `log-${Date.now()}`;
-                const logDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'audit_logs', logId);
-                await setDoc(logDocRef, {
-                    timestamp: new Date().toISOString(),
-                    action: actionTitle,
-                    author: author,
-                    details: details,
-                    userId: currentUser.uid
-                });
-            } catch (err) {
-                console.error("Erro ao gravar no Firestore:", err);
-            }
-        };
-
-        // Iniciar Auth ao carregar script módulo
-        initAuth();
-    </script>
-
-    <!-- Script Principal de Aplicação -->
+    <!-- Script de Conexão Firebase e Lógica -->
     <script>
-        // Participantes do e-mail
+        // Configuração do Firebase com as suas credenciais
+        const firebaseConfig = {
+            apiKey: "AIzaSyBH4FLWJcXU1g6gU6P3yOcJ2lcGS2Dquyo",
+            authDomain: "treinamento-campos-origem-bsa.firebaseapp.com",
+            projectId: "treinamento-campos-origem-bsa",
+            storageBucket: "treinamento-campos-origem-bsa.firebasestorage.app",
+            messagingSenderId: "1089813369998",
+            appId: "1:1089813369998:web:cc5fcdb236b63c79ace5df",
+            measurementId: "G-S544XYZ434"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
         const participantsPara = [
-            "Rafael Henrique Andrade de Carvalho",
-            "Patrick Casagrande",
-            "Bruna Fernanda Do Prado Ribeiro",
-            "Ronaldo Antunes",
-            "Israel Schimitz dos Santos"
+            "Rafael Henrique Andrade de Carvalho", "Patrick Casagrande",
+            "Bruna Fernanda Do Prado Ribeiro", "Ronaldo Antunes", "Israel Schimitz dos Santos"
         ];
 
         const participantsCc = [
-            "Cristiano Borges Fornari",
-            "Poliana Da Silva Machado",
-            "Lucas Merlo Ben",
-            "Jakson Pires",
-            "Renata Pozza",
-            "Paula Pellegrini",
-            "Dener Paludo"
+            "Cristiano Borges Fornari", "Poliana Da Silva Machado", "Lucas Merlo Ben",
+            "Jakson Pires", "Renata Pozza", "Paula Pellegrini", "Dener Paludo"
         ];
 
-        // Estado do Histórico de Auditoria Local
-        let auditLogs = [
-            {
-                timestamp: "2026-11-09T14:46:00.000Z",
-                action: "Reserva Padrão Cadastrada",
-                author: "Diogo Paim Gonçalves",
-                details: "Qui. 19/11/2026 09:00 - 09:30 marcado para Time Sudeste conforme e-mail."
-            }
-        ];
-
-        // Slots de Horários
         let scheduleData = [
-            // JANELA 1: 17 a 19/11 (09h00 - 12h00)
             { id: "17-11-0900", dateStr: "2026-11-17", dateDisplay: "Terça, 17/11/2026", timeDisplay: "09:00 - 09:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
             { id: "17-11-0930", dateStr: "2026-11-17", dateDisplay: "Terça, 17/11/2026", timeDisplay: "09:30 - 10:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
             { id: "17-11-1000", dateStr: "2026-11-17", dateDisplay: "Terça, 17/11/2026", timeDisplay: "10:00 - 10:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
@@ -624,7 +424,7 @@
             { id: "18-11-1100", dateStr: "2026-11-18", dateDisplay: "Quarta, 18/11/2026", timeDisplay: "11:00 - 11:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
             { id: "18-11-1130", dateStr: "2026-11-18", dateDisplay: "Quarta, 18/11/2026", timeDisplay: "11:30 - 12:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
 
-            // Slot Marcado no e-mail
+            // Slot inicial ocupado Time Sudeste
             { id: "19-11-0900", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "09:00 - 09:30", window: 1, isOccupied: true, team: "Time Sudeste", owner: "Diogo Paim Gonçalves", notes: "Esta data já foi ocupada pelo time sudeste" },
             { id: "19-11-0930", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "09:30 - 10:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
             { id: "19-11-1000", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "10:00 - 10:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
@@ -632,77 +432,93 @@
             { id: "19-11-1100", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "11:00 - 11:30", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
             { id: "19-11-1130", dateStr: "2026-11-19", dateDisplay: "Quinta, 19/11/2026", timeDisplay: "11:30 - 12:00", window: 1, isOccupied: false, team: "", owner: "", notes: "" },
 
-            // JANELA 2: 24 a 26/11
-            ...generateWindowSlots(["2026-11-24", "2026-11-25", "2026-11-26"], [
-                {day: "Terça", dates: "24/11/2026"},
-                {day: "Quarta", dates: "25/11/2026"},
-                {day: "Quinta", dates: "26/11/2026"}
-            ], 2),
-
-            // JANELA 3: 02 a 04/12
-            ...generateWindowSlots(["2026-12-02", "2026-12-03", "2026-12-04"], [
-                {day: "Quarta", dates: "02/12/2026"},
-                {day: "Quinta", dates: "03/12/2026"},
-                {day: "Sexta", dates: "04/12/2026"}
-            ], 3)
+            ...generateWindowSlots(["2026-11-24", "2026-11-25", "2026-11-26"], [{day: "Terça", dates: "24/11/2026"}, {day: "Quarta", dates: "25/11/2026"}, {day: "Quinta", dates: "26/11/2026"}], 2),
+            ...generateWindowSlots(["2026-12-02", "2026-12-03", "2026-12-04"], [{day: "Quarta", dates: "02/12/2026"}, {day: "Quinta", dates: "03/12/2026"}, {day: "Sexta", dates: "04/12/2026"}], 3)
         ];
 
         function generateWindowSlots(dateStrs, dateDisplays, windowNum) {
             let slots = [];
-            const timeRanges = [
-                "09:00 - 09:30", "09:30 - 10:00", "10:00 - 10:30", "10:30 - 11:00", "11:00 - 11:30", "11:30 - 12:00",
-                "14:00 - 14:30", "14:30 - 15:00", "15:00 - 15:30", "15:30 - 16:00"
-            ];
-
+            const timeRanges = ["09:00 - 09:30", "09:30 - 10:00", "10:00 - 10:30", "10:30 - 11:00", "11:00 - 11:30", "11:30 - 12:00", "14:00 - 14:30", "14:30 - 15:00", "15:00 - 15:30", "15:30 - 16:00"];
             dateStrs.forEach((dateStr, idx) => {
                 const info = dateDisplays[idx];
                 timeRanges.forEach((tr, tIdx) => {
-                    const id = `w${windowNum}-${dateStr.substr(8,2)}-${tIdx}`;
-                    slots.push({
-                        id: id,
-                        dateStr: dateStr,
-                        dateDisplay: `${info.day}, ${info.dates}`,
-                        timeDisplay: tr,
-                        window: windowNum,
-                        isOccupied: false,
-                        team: "",
-                        owner: "",
-                        notes: ""
-                    });
+                    slots.push({ id: `w${windowNum}-${dateStr.substr(8,2)}-${tIdx}`, dateStr: dateStr, dateDisplay: `${info.day}, ${info.dates}`, timeDisplay: tr, window: windowNum, isOccupied: false, team: "", owner: "", notes: "" });
                 });
             });
-
             return slots;
         }
 
         let currentFilter = 'all';
+        let auditLogs = [];
 
         window.onload = function() {
             renderParticipants();
-            renderGridSlots();
-            renderCalendars();
-            updateKPIs();
-            renderAuditLogs();
-        };
+            initRealtimeSync();
+        }
+
+        // Sincronização em Tempo Real com Firestore
+        function initRealtimeSync() {
+            db.collection("agendamentos").onSnapshot((snapshot) => {
+                snapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const index = scheduleData.findIndex(s => s.id === doc.id);
+                    if (index !== -1) {
+                        scheduleData[index] = { ...scheduleData[index], ...data };
+                    }
+                });
+                renderGridSlots();
+                renderCalendars();
+                updateKPIs();
+            });
+
+            // Sincronizar Logs de Auditoria
+            db.collection("logs").orderBy("timestamp", "desc").limit(10).onSnapshot((snapshot) => {
+                auditLogs = [];
+                snapshot.forEach((doc) => {
+                    auditLogs.push(doc.data());
+                });
+                updateAuditUI();
+            });
+        }
+
+        function updateAuditUI() {
+            const lastText = document.getElementById('last-update-text');
+            const listContainer = document.getElementById('audit-logs-list');
+
+            if (auditLogs.length > 0) {
+                const latest = auditLogs[0];
+                const dateFormatted = latest.timestamp ? new Date(latest.timestamp.toDate ? latest.timestamp.toDate() : latest.timestamp).toLocaleString('pt-BR') : 'Recentemente';
+                lastText.innerHTML = `<strong>${latest.owner}</strong> (${latest.team}) alterou o slot <strong>${latest.slot}</strong> em ${dateFormatted}`;
+                
+                listContainer.innerHTML = auditLogs.map(log => {
+                    const dt = log.timestamp ? new Date(log.timestamp.toDate ? log.timestamp.toDate() : log.timestamp).toLocaleString('pt-BR') : '';
+                    return `
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-1">
+                            <div class="flex justify-between font-bold text-brand-blue">
+                                <span>${log.action === 'book' ? '📅 Reserva' : '🗑️ Liberação'} - ${log.slot}</span>
+                                <span class="text-slate-400 font-normal">${dt}</span>
+                            </div>
+                            <p class="text-slate-700"><strong>Equipe:</strong> ${log.team} | <strong>Responsável:</strong> ${log.owner}</p>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                lastText.innerText = "Nenhuma alteração registrada recentemente.";
+                listContainer.innerHTML = '<p class="text-xs text-slate-500 text-center py-4">Nenhum registro no histórico.</p>';
+            }
+        }
 
         function renderParticipants() {
-            const containerPara = document.getElementById('list-para');
-            const containerCc = document.getElementById('list-cc');
-            
-            containerPara.innerHTML = participantsPara.map(p => `
+            document.getElementById('list-para').innerHTML = participantsPara.map(p => `
                 <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-100 border border-slate-200">
-                    <span class="w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold text-[10px]">
-                        ${p.split(' ').map(n=>n[0]).slice(0,2).join('')}
-                    </span>
+                    <span class="w-6 h-6 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold text-[10px]">${p.split(' ').map(n=>n[0]).slice(0,2).join('')}</span>
                     <span class="font-medium text-slate-800">${p}</span>
                 </div>
             `).join('');
 
-            containerCc.innerHTML = participantsCc.map(p => `
+            document.getElementById('list-cc').innerHTML = participantsCc.map(p => `
                 <div class="flex items-center gap-2 text-xs p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600">
-                    <span class="w-6 h-6 rounded-full bg-slate-300 text-slate-700 flex items-center justify-center font-bold text-[10px]">
-                        ${p.split(' ').map(n=>n[0]).slice(0,2).join('')}
-                    </span>
+                    <span class="w-6 h-6 rounded-full bg-slate-300 text-slate-700 flex items-center justify-center font-bold text-[10px]">${p.split(' ').map(n=>n[0]).slice(0,2).join('')}</span>
                     <span>${p}</span>
                 </div>
             `).join('');
@@ -722,18 +538,12 @@
             
             return dates.map(dDisplay => {
                 const slotsForDay = windowSlots.filter(s => s.dateDisplay === dDisplay);
-                
                 return `
                     <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 flex flex-col justify-between">
                         <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
-                            <span class="font-bold text-slate-700 text-sm flex items-center gap-2">
-                                <i class="fa-regular fa-calendar-day text-brand-orange"></i> ${dDisplay}
-                            </span>
-                            <span class="text-[11px] font-semibold text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
-                                ${slotsForDay.filter(s=>!s.isOccupied).length} vagas
-                            </span>
+                            <span class="font-bold text-slate-700 text-sm">${dDisplay}</span>
+                            <span class="text-[11px] font-semibold text-slate-400 bg-white px-2 py-0.5 rounded border">${slotsForDay.filter(s=>!s.isOccupied).length} vagas</span>
                         </div>
-
                         <div class="space-y-2 max-h-80 overflow-y-auto custom-scrollbar pr-1">
                             ${slotsForDay.map(slot => {
                                 if (currentFilter === 'free' && slot.isOccupied) return '';
@@ -741,17 +551,15 @@
 
                                 if (slot.isOccupied) {
                                     return `
-                                        <div onclick="openBookingModal('${slot.id}')" class="p-3 rounded-xl border border-rose-200 bg-rose-50/80 hover:bg-rose-100 transition cursor-pointer flex items-center justify-between group shadow-sm">
+                                        <div onclick="openBookingModal('${slot.id}')" class="p-3 rounded-xl border border-rose-200 bg-rose-50/80 hover:bg-rose-100 transition cursor-pointer flex items-center justify-between group">
                                             <div>
                                                 <div class="flex items-center gap-1.5 text-xs font-bold text-rose-700">
                                                     <i class="fa-solid fa-lock text-rose-500"></i> ${slot.timeDisplay}
                                                 </div>
                                                 <p class="text-xs font-semibold text-slate-800 mt-1">${slot.team}</p>
-                                                <p class="text-[10px] text-slate-500"><i class="fa-regular fa-user mr-1"></i>${slot.owner}</p>
+                                                <p class="text-[10px] text-slate-500">${slot.owner}</p>
                                             </div>
-                                            <span class="text-[10px] bg-rose-200 text-rose-800 font-bold px-2 py-1 rounded-md group-hover:bg-rose-300 shrink-0">
-                                                Ocupado
-                                            </span>
+                                            <span class="text-[10px] bg-rose-200 text-rose-800 font-bold px-2 py-1 rounded-md">Ocupado</span>
                                         </div>
                                     `;
                                 } else {
@@ -761,9 +569,7 @@
                                                 <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                                                 <span class="text-xs font-medium text-slate-700">${slot.timeDisplay}</span>
                                             </div>
-                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md opacity-90 group-hover:bg-emerald-200">
-                                                Livre +
-                                            </span>
+                                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-md">Livre +</span>
                                         </div>
                                     `;
                                 }
@@ -782,22 +588,13 @@
                 const slotsOnDay = scheduleData.filter(s => s.dateStr === dateStr);
                 const hasSlots = slotsOnDay.length > 0;
                 const hasOccupied = slotsOnDay.some(s => s.isOccupied);
-
                 let cellClass = "p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition ";
-                if(hasSlots) {
-                    cellClass += hasOccupied ? "bg-rose-50 border-rose-200 text-rose-900 cursor-pointer hover:shadow-md" : "bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer hover:shadow-md";
-                } else {
-                    cellClass += "bg-slate-50 border-slate-100 text-slate-400 opacity-60";
-                }
+                cellClass += hasSlots ? (hasOccupied ? "bg-rose-50 border-rose-200 text-rose-900 cursor-pointer" : "bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer") : "bg-slate-50 border-slate-100 text-slate-400 opacity-60";
 
                 novHtml += `
-                    <div class="${cellClass}" onclick="${hasSlots ? `filterCalendarDay('${dateStr}')` : ''}">
+                    <div class="${cellClass}">
                         <span class="font-bold text-xs">${day}</span>
-                        ${hasSlots ? `
-                            <div class="text-[9px]">
-                                ${hasOccupied ? `<span class="bg-rose-200 text-rose-800 font-bold px-1 py-0.5 rounded block text-center">Ocupado</span>` : `<span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">${slotsOnDay.length} vagas</span>`}
-                            </div>
-                        ` : ''}
+                        ${hasSlots ? `<div class="text-[9px]">${hasOccupied ? `<span class="bg-rose-200 text-rose-800 font-bold px-1 py-0.5 rounded block text-center">Ocup</span>` : `<span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">${slotsOnDay.length} vagas</span>`}</div>` : ''}
                     </div>
                 `;
             }
@@ -805,28 +602,18 @@
 
             const decGrid = document.getElementById('cal-dec-grid');
             let decHtml = '<div class="p-2"></div><div class="p-2"></div>';
-
             for(let day=1; day<=31; day++) {
                 const dateStr = `2026-12-${day < 10 ? '0'+day : day}`;
                 const slotsOnDay = scheduleData.filter(s => s.dateStr === dateStr);
                 const hasSlots = slotsOnDay.length > 0;
                 const hasOccupied = slotsOnDay.some(s => s.isOccupied);
-
                 let cellClass = "p-2 rounded-xl h-16 flex flex-col justify-between border text-left transition ";
-                if(hasSlots) {
-                    cellClass += hasOccupied ? "bg-rose-50 border-rose-200 text-rose-900 cursor-pointer hover:shadow-md" : "bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer hover:shadow-md";
-                } else {
-                    cellClass += "bg-slate-50 border-slate-100 text-slate-400 opacity-60";
-                }
+                cellClass += hasSlots ? (hasOccupied ? "bg-rose-50 border-rose-200 text-rose-900 cursor-pointer" : "bg-emerald-50 border-emerald-200 text-emerald-900 cursor-pointer") : "bg-slate-50 border-slate-100 text-slate-400 opacity-60";
 
                 decHtml += `
-                    <div class="${cellClass}" onclick="${hasSlots ? `filterCalendarDay('${dateStr}')` : ''}">
+                    <div class="${cellClass}">
                         <span class="font-bold text-xs">${day}</span>
-                        ${hasSlots ? `
-                            <div class="text-[9px]">
-                                ${hasOccupied ? `<span class="bg-rose-200 text-rose-800 font-bold px-1 py-0.5 rounded block text-center">Ocupado</span>` : `<span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">${slotsOnDay.length} vagas</span>`}
-                            </div>
-                        ` : ''}
+                        ${hasSlots ? `<div class="text-[9px]">${hasOccupied ? `<span class="bg-rose-200 text-rose-800 font-bold px-1 py-0.5 rounded block text-center">Ocup</span>` : `<span class="bg-emerald-200 text-emerald-800 font-bold px-1 py-0.5 rounded block text-center">${slotsOnDay.length} vagas</span>`}</div>` : ''}
                     </div>
                 `;
             }
@@ -837,199 +624,112 @@
             const totalSlots = scheduleData.length;
             const occupiedSlots = scheduleData.filter(s => s.isOccupied).length;
             const freeSlots = totalSlots - occupiedSlots;
-
-            const totalHours = (totalSlots * 0.5).toFixed(1);
-            const freeHours = (freeSlots * 0.5).toFixed(1);
-
             const occupancyRate = ((occupiedSlots / totalSlots) * 100).toFixed(1);
 
-            document.getElementById('kpi-total-hours').innerText = `${totalHours}h 00m`;
             document.getElementById('kpi-free-slots').innerText = `${freeSlots} Slots`;
-            document.getElementById('kpi-free-hours').innerText = `${freeHours}h`;
-            document.getElementById('kpi-busy-slots').innerText = `${occupiedSlots} ${occupiedSlots === 1 ? 'Slot' : 'Slots'}`;
+            document.getElementById('kpi-free-hours').innerText = `${(freeSlots * 0.5).toFixed(1)}h`;
+            document.getElementById('kpi-busy-slots').innerText = `${occupiedSlots} Slots`;
             document.getElementById('kpi-occupancy-rate').innerText = `${occupancyRate}%`;
             document.getElementById('kpi-bar-occupancy').style.width = `${occupancyRate}%`;
-        }
-
-        // Renderizar Audit Logs
-        function renderAuditLogs() {
-            const container = document.getElementById('audit-log-container');
-            document.getElementById('count-logs').innerText = auditLogs.length;
-
-            if (auditLogs.length === 0) {
-                container.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">Nenhuma alteração registrada ainda.</p>`;
-                return;
-            }
-
-            const latestLog = auditLogs[0];
-            const formattedDate = new Date(latestLog.timestamp).toLocaleString('pt-BR');
-
-            document.getElementById('last-update-info').innerHTML = `
-                <strong>${latestLog.author}</strong> — <em>${latestLog.action}</em> <span class="text-slate-500 font-normal">(${formattedDate})</span>
-            `;
-
-            container.innerHTML = auditLogs.map(log => {
-                const dateFormatted = new Date(log.timestamp).toLocaleString('pt-BR');
-                return `
-                    <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col gap-1">
-                        <div class="flex items-center justify-between text-slate-500">
-                            <span class="font-bold text-brand-blue flex items-center gap-1.5">
-                                <i class="fa-solid fa-circle-dot text-[8px] text-brand-orange"></i> ${log.action}
-                            </span>
-                            <span class="text-[11px]"><i class="fa-regular fa-clock mr-1"></i>${dateFormatted}</span>
-                        </div>
-                        <p class="text-slate-800 font-semibold">Alterado por: <span class="text-brand-orange">${log.author}</span></p>
-                        <p class="text-slate-600">${log.details}</p>
-                    </div>
-                `;
-            }).join('');
         }
 
         function switchView(view) {
             const slotsContainer = document.getElementById('slots-view-container');
             const calendarContainer = document.getElementById('calendar-view-container');
-            const slotsBtn = document.getElementById('view-slots-btn');
-            const calBtn = document.getElementById('view-calendar-btn');
-
             if(view === 'slots') {
                 slotsContainer.classList.remove('hidden');
                 calendarContainer.classList.add('hidden');
-                slotsBtn.className = "flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg transition-all bg-white text-brand-blue shadow";
-                calBtn.className = "flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all";
             } else {
                 slotsContainer.classList.add('hidden');
                 calendarContainer.classList.remove('hidden');
-                calBtn.className = "flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg transition-all bg-white text-brand-blue shadow";
-                slotsBtn.className = "flex-1 md:flex-none px-4 py-2 text-sm font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all";
             }
-        }
-
-        function filterCalendarDay(dateStr) {
-            switchView('slots');
         }
 
         function filterSlots(type) {
             currentFilter = type;
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                if(btn.dataset.filter === type) {
-                    btn.className = "filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-brand-blue text-white transition shadow-sm";
-                } else {
-                    btn.className = "filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition";
-                }
-            });
             renderGridSlots();
         }
 
         function openBookingModal(slotId = null) {
-            let slot = null;
-            if (slotId) {
-                slot = scheduleData.find(s => s.id === slotId);
-            } else {
-                slot = scheduleData.find(s => !s.isOccupied) || scheduleData[0];
-            }
-
-            if (!slot) return;
-
+            const slot = scheduleData.find(s => s.id === slotId) || scheduleData[0];
             document.getElementById('booking-slot-id').value = slot.id;
             document.getElementById('modal-slot-datetime').innerText = `${slot.dateDisplay} às ${slot.timeDisplay}`;
             
-            const occupiedActions = document.getElementById('occupied-actions');
-            const submitBtn = document.getElementById('save-booking-btn');
-
             if(slot.isOccupied) {
-                document.getElementById('booking-modal-title').innerText = "Editar / Liberar Agendamento";
+                document.getElementById('booking-modal-title').innerText = "Detalhes do Agendamento";
                 document.getElementById('booking-team-name').value = slot.team;
                 document.getElementById('booking-owner').value = slot.owner;
                 document.getElementById('booking-notes').value = slot.notes;
-                occupiedActions.classList.remove('hidden');
-                submitBtn.innerText = "Atualizar e Gravar";
+                document.getElementById('occupied-actions').classList.remove('hidden');
+                document.getElementById('save-booking-btn').innerText = "Atualizar Reserva";
             } else {
-                document.getElementById('booking-modal-title').innerText = "Agendar Horário do Treinamento";
+                document.getElementById('booking-modal-title').innerText = "Agendar Treinamento";
                 document.getElementById('booking-team-name').value = "";
                 document.getElementById('booking-owner').value = "";
                 document.getElementById('booking-notes').value = "";
-                occupiedActions.classList.add('hidden');
-                submitBtn.innerText = "Confirmar Reserva na Nuvem";
+                document.getElementById('occupied-actions').classList.add('hidden');
+                document.getElementById('save-booking-btn').innerText = "Confirmar Reserva";
             }
-
             document.getElementById('modal-booking').classList.remove('hidden');
         }
 
-        function closeBookingModal() {
-            document.getElementById('modal-booking').classList.add('hidden');
-        }
+        function closeBookingModal() { document.getElementById('modal-booking').classList.add('hidden'); }
+        function openParticipantsModal() { document.getElementById('modal-participants').classList.remove('hidden'); }
+        function closeParticipantsModal() { document.getElementById('modal-participants').classList.add('hidden'); }
+        function openAuditModal() { document.getElementById('modal-audit').classList.remove('hidden'); }
+        function closeAuditModal() { document.getElementById('modal-audit').classList.add('hidden'); }
 
+        // Gravação na Nuvem (Firebase)
         function handleBookingSubmit(event) {
             event.preventDefault();
             const slotId = document.getElementById('booking-slot-id').value;
             const team = document.getElementById('booking-team-name').value;
             const owner = document.getElementById('booking-owner').value;
             const notes = document.getElementById('booking-notes').value;
+            const slotObj = scheduleData.find(s => s.id === slotId);
 
-            const slotIndex = scheduleData.findIndex(s => s.id === slotId);
-            if(slotIndex !== -1) {
-                const isNew = !scheduleData[slotIndex].isOccupied;
-                scheduleData[slotIndex].isOccupied = true;
-                scheduleData[slotIndex].team = team;
-                scheduleData[slotIndex].owner = owner;
-                scheduleData[slotIndex].notes = notes;
+            const payload = {
+                isOccupied: true,
+                team: team,
+                owner: owner,
+                notes: notes,
+                updatedAt: new Date().toISOString()
+            };
 
-                const actionTitle = isNew ? "Nova Reserva Efetuada" : "Reserva Alterada";
-                const details = `${team} reservou para ${scheduleData[slotIndex].dateDisplay} (${scheduleData[slotIndex].timeDisplay}). Obs: ${notes || 'Nenhuma'}`;
-
-                // Salvar e sincronizar via Firebase Realtime
-                if (window.saveScheduleToFirebase) {
-                    window.saveScheduleToFirebase(scheduleData, actionTitle, `${owner} (${team})`, details);
-                }
-
-                renderGridSlots();
-                renderCalendars();
-                updateKPIs();
+            db.collection("agendamentos").doc(slotId).set(payload, { merge: true }).then(() => {
+                // Registrar log de auditoria
+                db.collection("logs").add({
+                    action: 'book',
+                    slot: `${slotObj.dateDisplay} (${slotObj.timeDisplay})`,
+                    team: team,
+                    owner: owner,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
                 closeBookingModal();
-            }
+            });
         }
 
         function releaseSlot() {
             const slotId = document.getElementById('booking-slot-id').value;
-            const owner = document.getElementById('booking-owner').value || "Usuário";
-            const team = document.getElementById('booking-team-name').value || "Equipe";
-            const slotIndex = scheduleData.findIndex(s => s.id === slotId);
-            
-            if(slotIndex !== -1) {
-                const targetSlot = scheduleData[slotIndex];
-                scheduleData[slotIndex].isOccupied = false;
-                scheduleData[slotIndex].team = "";
-                scheduleData[slotIndex].owner = "";
-                scheduleData[slotIndex].notes = "";
+            const slotObj = scheduleData.find(s => s.id === slotId);
+            const payload = {
+                isOccupied: false,
+                team: "",
+                owner: "",
+                notes: "",
+                updatedAt: new Date().toISOString()
+            };
 
-                const actionTitle = "Reserva Cancelada / Horário Liberado";
-                const details = `Horário das ${targetSlot.timeDisplay} em ${targetSlot.dateDisplay} foi liberado por ${owner}.`;
-
-                if (window.saveScheduleToFirebase) {
-                    window.saveScheduleToFirebase(scheduleData, actionTitle, `${owner} (${team})`, details);
-                }
-
-                renderGridSlots();
-                renderCalendars();
-                updateKPIs();
+            db.collection("agendamentos").doc(slotId).set(payload, { merge: true }).then(() => {
+                db.collection("logs").add({
+                    action: 'release',
+                    slot: `${slotObj.dateDisplay} (${slotObj.timeDisplay})`,
+                    team: 'Liberado',
+                    owner: 'Sistema / Diogo',
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
                 closeBookingModal();
-            }
-        }
-
-        function openParticipantsModal() {
-            document.getElementById('modal-participants').classList.remove('hidden');
-        }
-
-        function closeParticipantsModal() {
-            document.getElementById('modal-participants').classList.add('hidden');
-        }
-
-        function openAuditModal() {
-            document.getElementById('modal-audit').classList.remove('hidden');
-        }
-
-        function closeAuditModal() {
-            document.getElementById('modal-audit').classList.add('hidden');
+            });
         }
     </script>
 </body>
